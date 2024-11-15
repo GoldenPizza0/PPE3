@@ -4,7 +4,7 @@
 	{
 		case 'creationIntervenant':
 		{
-			include("vues/v_creationIntervenant.php");
+			include("vue/v_creationIntervenant.php");
 			break;
 		}
 		case 'confirmCreatIntervenant':
@@ -16,12 +16,14 @@
 			$pdo->creerIntervenant($nom,$prenom,$niveauEtudes,$maitreAnglais);
 			
 			//soit ce code :
-			$lesClients = $pdo->getLesIntervenants();
-			include("vues/v_intervenants.php");	
+			include("vue/v_intervenants_redirection.php");	
 			
 			// ou ce code :
 			//header('Location: index.php');	
 			break;
 		}
+		case 'voirIntervenants':
+			{$lesIntervenants = $pdo->getLesIntervenants();include("vue/v_intervenants.php");break;}
+			
 	}
 ?>

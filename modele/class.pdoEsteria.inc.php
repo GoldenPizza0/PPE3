@@ -18,15 +18,15 @@ class PdoEsteria
       	private static $user='root' ;    		
       	private static $mdp='' ;	
 		private static $monPdo;
-		private static $monPdoTransNat = null;
+		private static $monPdoEsteria = null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
  */				
 	private function __construct()
 	{
-    		getPdoEsteria::$monPdo = new PDO(PdoEsteria::$serveur.';'.PdoEsteria::$bdd, PdoEsteria::$user, PdoEsteria::$mdp); 
-			PdoEsteria::$monPdo->query("SET CHARACTER SET utf8");
+		PdoEsteria::$monPdo = new PDO(PdoEsteria::$serveur.';'.PdoEsteria::$bdd, PdoEsteria::$user, PdoEsteria::$mdp); 
+		PdoEsteria::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
 		PdoEsteria::$monPdo = null;
@@ -40,14 +40,14 @@ class PdoEsteria
  */
 	public  static function getPdoEsteria()
 	{
-		if(PdoEsteria::$monPdoTransNat == null)
+		if(PdoEsteria::$monPdoEsteria == null)
 		{
-			PdoEsteria::$monPdoTransNat= new PdoEsteria();
+			PdoEsteria::$monPdoEsteria= new PdoEsteria();
 		}
-		return PdoEsteria::$monPdoTransNat;  
+		return PdoEsteria::$monPdoEsteria;  
 	}
 /**
- * Retourne tous les clients sous forme d'un tableau associatif
+ * Retourne tous les Intervenants sous forme d'un tableau associatif
  *
  * @return le tableau associatif des clients
 */
@@ -59,24 +59,30 @@ class PdoEsteria
 		return $lesLignes;
 	}
 /**
- * Créer un client 
+ * Créer un intervenant 
  *
- * Créer un client à partir des arguments validés passés en paramètre
+ * Créer un intervenant à partir des arguments validés passés en paramètre
 */
 	public function creerIntervenant($nom,$prenom,$NE,$MA)
 	{
-		$res = PdoEsteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
-			prenom_salarie VALUES( :nom, 
+		$res1 = PdoEsteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
+			prenom_salarie) VALUES( :nom, 
 			:prenom)');
-		$res->bindValue('nom',$nom, PDO::PARAM_STR);
-		$res->bindValue('prenom', $prenom, PDO::PARAM_STR);   
-		$res->execute();
-		$res = PdoEsteria::$monPdo->prepare('INSERT INTO intervenant (niveau_etude, 
-			maitrise_an VALUES( :NE, 
+		$res1->bindValue('nom',$nom, PDO::PARAM_STR);
+		$res1->bindValue('prenom', $prenom, PDO::PARAM_STR);
+		$res1->execute();
+
+		$id_salarie = PdoEsteria::$monPdo->query('SELECT MAX(id_salarie) AS max_id FROM salarie');
+		$num_id_salarie = $id_salarie->fetch(PDO::FETCH_ASSOC);
+		$max_id = $num_id_salarie['max_id'];
+		
+		$res2 = PdoEsteria::$monPdo->prepare('INSERT INTO intervenant (id_salarie, niveau_etude, 
+			maitrise_an) VALUES( :id, :NE, 
 			:MA)');
-		$res->bindValue('NE',$NE, PDO::PARAM_STR);
-		$res->bindValue('MA', $MA, PDO::PARAM_STR);   
-		$res->execute();
+		$res2->bindValue('id', $max_id, PDO::PARAM_STR);
+		$res2->bindValue('NE',$NE, PDO::PARAM_STR);
+		$res2->bindValue('MA', $MA, PDO::PARAM_STR);
+		$res2->execute();
 	}
 	public function nbClients(){
 		$req = "select count(*) from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";

@@ -23,11 +23,11 @@
 		
         foreach( $lesIntervenants as $unIntervenant)
         {
-            $num = $unIntervenant['numS'];
-            $nom = $unIntervenant['nomS'];
-            $prenom = $unIntervenant['prenomS'];
-            $NE = $unIntervenant['niveauEtudes'];
-            $MA = $unIntervenant['maitriseAnglais'];
+            $num = $unIntervenant['id_salarie'];
+            $nom = $unIntervenant['nom_salarie'];
+            $prenom = $unIntervenant['prenom_salarie'];
+            $NE = $unIntervenant['niveau_etude'];
+            $MA = $unIntervenant['maitrise_an'];
             ?>
             <tr>
                 <td width=150><?php echo $nom ?></a></td>
