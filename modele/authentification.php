@@ -7,7 +7,7 @@ function login($username, $mdp) {
         session_start();
     }
 
-    $util = getUtilisateurByMailU($mail);
+    $util = getUtilisateurByMailU($username);
     $mdpBD = $util["mdp"];
 
     if (trim($mdpBD) == trim(crypt($mdp, $mdpBD))) {
