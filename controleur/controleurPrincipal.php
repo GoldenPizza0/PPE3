@@ -3,7 +3,7 @@
 function controleurPrincipal($action) {
     $lesActions = array();
     $lesActions["defaut"] = "connexion.php";
-    $lesActions["liste"] = "liste.php";
+    $lesActions["client"] = "c_controleurClients.php?action=voirTableauClientSite";
     $lesActions["detail"] = "d.php";
     $lesActions["recherche"] = "recherche.php";
     $lesActions["connexion"] = "connexion.php";
