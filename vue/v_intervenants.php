@@ -1,4 +1,6 @@
-
+<?php
+include("vues/entete.php");	
+?>
 <!doctype html>
 <html>
 

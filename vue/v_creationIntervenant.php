@@ -1,3 +1,6 @@
+<?php
+include("entete.php");	
+?>
 <!doctype html>
 <html>
     <head>
