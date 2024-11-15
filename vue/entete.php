@@ -4,10 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title><?php echo $titre ?></title>
         <style type="text/css">
-            @import url("css/base.css");
-            @import url("css/form.css");
-            @import url("css/cgu.css");
-            @import url("css/corps.css");
+            @import url("css/styles.css");
         </style>
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     </head>
@@ -16,7 +13,7 @@
             
         <ul id="menuGeneral">
             <li><a href="./?action=accueil">Accueil</a></li> 
-            <li><a href="./?action=recherche"><img src="images/rechercher.png" alt="loupe" />Recherche</a></li>
+            <li><a href="./?action=recherche">Recherche</a></li>
             <li></li> 
 
             <li id="logo"><a href="./?action=accueil"><img src="images/logoBarre.jpg" style="width:64px;height:64px" alt="logo" /></a></li>
