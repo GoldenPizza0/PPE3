@@ -11,8 +11,8 @@
     <nav>
             
         <ul id="menuGeneral">
-            <li><a href="./?uc=accueil">Accueil</a></li> 
-            <li><a href="./?uc=client&action=voirTableauClientSite"> Client</a></li>
+            <li><a href="index.php/?uc=accueil">Accueil</a></li> 
+            <li><a href="index.php/?uc=client&action=voirTableauClientSite"> Client</a></li>
 
         </ul>
     </nav>
