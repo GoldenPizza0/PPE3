@@ -16,7 +16,6 @@ else
     $mdpU="";
 }
 
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 
 
 // traitement si necessaire des donnees recuperees
