@@ -59,14 +59,14 @@ class PdoEsteria
 		return $lesLignes;
 	}
 /**
- * Créer un client 
+ * Créer un intervenant
  *
- * Créer un client à partir des arguments validés passés en paramètre
+ * Créer un intervenant à partir des arguments validés passés en paramètre
 */
 	public function creerIntervenant($nom,$prenom,$NE,$MA)
 	{
 		$res = PdoEsteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
-			prenom_salarie VALUES( :nom, 
+			prenom_salarie) VALUES( :nom, 
 			:prenom)');
 		$res->bindValue('nom',$nom, PDO::PARAM_STR);
 		$res->bindValue('prenom', $prenom, PDO::PARAM_STR);   
@@ -78,11 +78,55 @@ class PdoEsteria
 		$res->bindValue('MA', $MA, PDO::PARAM_STR);   
 		$res->execute();
 	}
+	
+	/**
+	 * Savoir le nombre de clients
+	 *
+	 * @return int nombre clients
+	*/
 	public function nbClients(){
-		$req = "select count(*) from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";
+		$req = "select count(*) from client;";
 		$res = PdoEsteria::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
+	}
+	
+	/**
+	 * Prendre la totalité des clients avec leurs sites associés
+	 *
+	 * @return array les clients et leurs sites 
+	*/
+	public function getLesClientsEtSites(){
+		$req1 = "select code_client as client, adresse, societe, libelle_act as secteur from client join secteur on client.id_act on secteur.id_act";
+		$res1 = PdoEsteria::$monPdo->query($req1);
+		$lesClients = $res1->fetchAll();
+		$req2 = "select num_site as site, code_client as client, nom_site as nom, adresse_site as adresse, referent from site ";
+		$res2 = PdoEsteria::$monPdo->query($req2);
+		$lesSites = $res2->fetchAll();
+		$lesClientsEtSites = array();
+		foreach($lesClients as $UnClient){
+			$SitesDeClient = array();
+			foreach($lesSites as $UnSite){
+				if ($UnSite["client"] = $UnClient["client"]){
+					$UnSiteDeClient = [
+						"site : ".$UnSite["site"],
+						"nom : ".$UnSite["nom"],
+						"adresse : ".$UnSite["adresse"],
+						"referent : ".$UnSite["referent"],
+					];
+					$SitesDeClient += $UnSiteDeClient;
+				}
+			}
+			$UnClientsEtSites = [
+				"client : ".$UnClient["client"],
+				"adresse : ".$UnClient["adresse"],
+				"societe : ".$UnClient["societe"],
+				"secteur : ".$UnClient["secteur"],
+				"sites : ".$SitesDeClient,
+			];
+			$lesClientsEtSites = $UnClientsEtSites;
+		}
+		return $lesClientsEtSites;
 	}
 }
 ?>

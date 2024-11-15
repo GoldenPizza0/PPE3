@@ -5,8 +5,8 @@ switch($action)
 {
     case 'voirTableauClientSite':
     {
-        $nClients = nbClients();
-        if($n >0)
+        $nClients = $pdo->nbClients();
+        if($nClients >0)
         {
             $lesClientsEtSites = $pdo->getLesClientsEtSites();
             include("vues/v_tableauAdminClient.php");
