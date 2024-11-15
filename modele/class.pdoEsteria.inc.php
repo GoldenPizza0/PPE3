@@ -84,5 +84,11 @@ class PdoEsteria
 		$res2->bindValue('MA', $MA, PDO::PARAM_STR);
 		$res2->execute();
 	}
+	public function nbClients(){
+		$req = "select count(*) from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";
+		$res = PdoEsteria::$monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
 }
 ?>
