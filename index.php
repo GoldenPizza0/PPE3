@@ -4,12 +4,12 @@ include "$racine/controleur/controleurPrincipal.php";
 include_once "$racine/modele/authentification.php"; // pour pouvoir utiliser isLoggedOn()
 
 if (isset($_GET["action"])) {
-    $uc = $_GET["action"];
+    $action = $_GET["action"];
 } 
 else {
-    $uc = "defaut";
+    $action = "defaut";
 }
 
-$fichier = controleurPrincipal($uc);
+$fichier = controleurPrincipal($action);
 include "$racine/controleur/$fichier";
 ?>
