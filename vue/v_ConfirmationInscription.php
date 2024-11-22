@@ -31,7 +31,7 @@ if (isset($_SESSION['inscription_reussie']) && $_SESSION['inscription_reussie'] 
             <h2>Félicitations !</h2>
             <p>Votre inscription a été effectuée avec succès.</p>
             
-            <p><a href="./?action=connexion">Cliquez ici pour vous connecter à votre compte.</a></p>
+            <p><a href="./?uc=connexion">Cliquez ici pour vous connecter à votre compte.</a></p>
         </section>
 
         <footer>

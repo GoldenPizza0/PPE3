@@ -7,7 +7,7 @@ for ($i = 0; $i < count($listeContrats); $i++) {
 
     <div class="card">
 
-        <div class=""><?php echo "<a href='./?action=detailcontrat&idR=" . $listeContrats[$i]['idR'] . "'>" . $listeRestos[$i]['nomR'] . "</a>"; ?>
+        <div class=""><?php echo "<a href='./?uc=detailcontrat&idR=" . $listeContrats[$i]['idR'] . "'>" . $listeRestos[$i]['nomR'] . "</a>"; ?>
             <br />
             <?= $listeContrats[$i]["No_contrat"] ?>
             <?= $listeContrats[$i]["nb_jour"] ?>

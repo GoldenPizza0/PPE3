@@ -9,7 +9,7 @@
         
 </head>
 <body>
-    <form action="index.php?uc=creerIntervenant&action=creationIntervenant" method="post">
+    <form action="index.php?uc=creerIntervenant&uc=creationIntervenant" method="post">
         <p><H1>Liste des intervenants</H1><br>
 
         <table border=3 cellspacing=1 >
@@ -37,8 +37,8 @@
                 <?php 
 
                 ?>
-				<td width=30><a href=index.php?uc=modifierIntervenant&action=modificationIntervenant&num=<?php echo $num ?>><img src="images/modifier.gif" title="Modif"></a></td>
-                <td width=30><a href=index.php?uc=supprimerIntervenant&action=suppressionIntervenant&num=<?php echo $num ?>><img src="images/supp.png" title="Suppr"></a></td>
+				<td width=30><a href=index.php?uc=modifierIntervenant&uc=modificationIntervenant&num=<?php echo $num ?>><img src="images/modifier.gif" title="Modif"></a></td>
+                <td width=30><a href=index.php?uc=supprimerIntervenant&uc=suppressionIntervenant&num=<?php echo $num ?>><img src="images/supp.png" title="Suppr"></a></td>
             </tr>
             <?php 
         }

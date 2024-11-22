@@ -1,5 +1,5 @@
 <h1>Connexion</h1>
-<form action="./?action=connexion" method="POST">
+<form action="./?uc=connexion" method="POST">
 
     <input type="text" name="username" placeholder="Email de connexion" /><br />
     <input type="password" name="mdp" placeholder="Mot de passe"  /><br />
@@ -7,7 +7,7 @@
 
 </form>
 <br />
-<a href="./?action=inscription">Inscription</a>
+<a href="./?uc=inscription">Inscription</a>
 
 <hr>
 Utilisateur de test : <br />

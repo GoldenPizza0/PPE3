@@ -10,7 +10,7 @@
 	
    <body>
 		<p><h1>Nouveau intervenant cree :</h1></p><BR/>
-		<form action="index.php?uc=creerIntervenant&action=confirmCreatIntervenant" method="post">
+		<form action="index.php?uc=creerIntervenant&uc=confirmCreatIntervenant" method="post">
 			<table>
 				<tbody>
 					<tr><td>Nom</td><td><input name="nomS" size=20></td></tr>

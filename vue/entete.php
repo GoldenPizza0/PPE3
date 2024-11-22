@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title><?php echo $titre ?></title>
-        <style type="text/css">
-            @import url("css/styles.css");
-        </style>
+          <link href="modele/styles.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     </head>
     <body>
@@ -45,5 +43,5 @@
             <?php } ?>
         <?php } ?>
     </ul>
-
+ 
     <div id="corps">

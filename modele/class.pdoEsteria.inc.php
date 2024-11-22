@@ -14,7 +14,7 @@
 class PdoEsteria
 {   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=esn_esteria';   		
+      	private static $bdd='dbname=esn_steria';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;	
 		private static $monPdo;

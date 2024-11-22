@@ -10,7 +10,7 @@ function login($username, $mdp) {
     $util = getUtilisateurByMail($username);
     $mdpBD = $util["mdp"];
 
-    if (trim($mdpBD) == trim(crypt($mdp, $mdpBD))) {
+    if (trim($mdpBD) == ($mdp, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
         $_SESSION["username"] = $username;
         $_SESSION["mdp"] = $mdpBD;

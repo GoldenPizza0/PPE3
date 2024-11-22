@@ -5,6 +5,11 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/modele/bd.utilisateur.inc.php";
 
+// creation du menu burger
+$menuBurger = array();
+$menuBurger[] = Array("url"=>"./?uc=connexion","label"=>"Connexion");
+$menuBurger[] = Array("url"=>"./?uc=inscription","label"=>"Inscription");
+
 
 $inscrit = false;
 $msg="";
@@ -32,14 +37,14 @@ if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"]))
 if ($inscrit) {
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Inscription confirmée";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/vueConfirmationInscription.php";
-    include "$racine/vue/pied.html.php";
+    include "$racine/vue/entete.php";
+    include "$racine/vue/vueAuthentification.php";
+    include "$racine/vue/pied.php";
 } else {
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Inscription pb";
-    include "$racine/vue/entete.html.php";
+    include "$racine/vue/entete.php";
     include "$racine/vue/vueInscription.php";
-    include "$racine/vue/pied.html.php";
+    include "$racine/vue/pied.php";
 }
 ?>
