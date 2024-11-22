@@ -3,7 +3,6 @@
 include_once "bd.utilisateur.inc.php";
 
 function login($username, $mdp) {
-function login($username, $mdp) {
     if (!isset($_SESSION)) {
         session_start();
     }
