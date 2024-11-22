@@ -23,8 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $message = "Erreur lors de l'ajout du contrat.";
     }
+}else{
+    // appel du script de vue qui permet de gerer l'affichage des donnees
+$titre = "Ajout des contrats répertoriés";
+include "$racine/vue/entete.php";
+
+include "$racine/vue/v_ajoutContrat.php";
+
+include "$racine/vue/pied.php";
 }
 
-// Redirection vers la liste des contrats
-header("Location: ./?uc=listeContrats");
-exit();

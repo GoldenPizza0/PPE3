@@ -19,4 +19,3 @@ foreach ($listeContrats as $contrat) { ?>
         </div>
     </div>
 <?php }} ?>
-<a href="./?uc=ajouterContrat">AJOUT CONTRAT</a>
