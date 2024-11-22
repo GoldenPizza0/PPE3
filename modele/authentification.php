@@ -2,17 +2,17 @@
 
 include_once "bd.utilisateur.inc.php";
 
-function login($mail, $mdpU) {
+function login($username, $mdp) {
     if (!isset($_SESSION)) {
         session_start();
     }
 
-    $util = getUtilisateurByMail($mail);
+    $util = getUtilisateurByMail($username);
     $mdpBD = $util["mdp"];
 
-    if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
+    if (trim($mdpBD) == trim(crypt($mdp, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
-        $_SESSION["username"] = $mail;
+        $_SESSION["username"] = $username;
         $_SESSION["mdp"] = $mdpBD;
     }
 }

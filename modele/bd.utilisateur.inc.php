@@ -21,7 +21,7 @@ function getUtilisateurs() {
     return $resultat;
 }
 
-function getUtilisateurByMailU($username) {
+function getUtilisateurByMail($username) {
 
     try {
         $cnx = connexionPDO();

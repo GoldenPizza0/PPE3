@@ -8,18 +8,18 @@ include_once "$racine/modele/authentification.php";
 // recuperation des donnees GET, POST, et SESSION
 if (isset($_POST["username"]) && isset($_POST["mdp"])){
     $mailU=$_POST["username"];
-    $mdpU=$_POST["username"];
+    $mdpU=$_POST["mdp"];
 }
 else
 {
-    $mailU="";
-    $mdpU="";
+    $username="";
+    $mdp="";
 }
 
 
 
 // traitement si necessaire des donnees recuperees
-login($mailU,$mdpU);
+login($username,$mdp);
 
 if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
     //include "$racine/controleur/monProfil.php";
