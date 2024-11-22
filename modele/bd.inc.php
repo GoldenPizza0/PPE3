@@ -3,7 +3,7 @@
 function connexionPDO() {
     $login = "root";
     $mdp = "";
-    $bd = "esn_steria";
+    $bd = "esn_esteria";
     $serveur = "localhost";
 
     try {

@@ -12,18 +12,18 @@
     <nav>
             
         <ul id="menuGeneral">
-            <li><a href="./?action=accueil">Accueil</a></li> 
-            <li><a href="./?action=recherche">Recherche</a></li>
-            <li></li> 
+            <li><a href="./?uc=accueil">Accueil</a></li> 
+            <li><a href="./?uc=recherche">Recherche</a></li>
+            <li><a href="./?uc=client">Client</a></li> 
 
-            <li id="logo"><a href="./?action=accueil"><img src="images/logoBarre.jpg" style="width:64px;height:64px" alt="logo" /></a></li>
+            <li id="logo"><a href="./?uc=accueil"><img src="images/logoBarre.jpg" style="width:64px;height:64px" alt="logo" /></a></li>
             <li></li> 
-            <li><a href="./?action=cgu">CGU</a></li>
+            <li><a href="./?uc=cgu">CGU</a></li>
             <?php if(isLoggedOn()){ ?>
-            <li><a href="./?action=profil"><img src="images/profil.png" alt="loupe" />Mon Profil</a></li>
+            <li><a href="./?uc=profil"><img src="images/profil.png" alt="loupe" />Mon Profil</a></li>
             <?php } 
             else{ ?>
-            <li><a href="./?action=connexion"><img src="images/profil.png" alt="loupe" />Connexion</a></li>
+            <li><a href="./?uc=connexion"><img src="images/profil.png" alt="loupe" />Connexion</a></li>
             <?php } ?>
 
         </ul>
