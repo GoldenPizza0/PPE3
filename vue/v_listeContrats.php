@@ -1,43 +1,20 @@
-<br/><br/>
 <h1>Liste des contrats</h1>
 <?php
-for ($i = 0; $i < count($listeContrats); $i++) {
-
-    ?>
-
+foreach ($listeContrats as $contrat) { ?>
     <div class="card">
-
-        <div class=""><?php echo "<a href='./?uc=detailcontrat&idR=" . $listeContrats[$i]['idR'] . "'>" . $listeRestos[$i]['nomR'] . "</a>"; ?>
+        <div>
+            <strong>Contrat n° :</strong> 
+            <a href="./?uc=detailcontrat&No_contrat=<?= $contrat['No_contrat'] ?>">
+                <?= $contrat['No_contrat'] ?>
+            </a>
             <br />
-            <?= $listeContrats[$i]["No_contrat"] ?>
-            <?= $listeContrats[$i]["nb_jour"] ?>
-            <br />
-            <?= $listeContrats[$i]["enveloppe"] ?>
-            <?= $listeContrats[$i]["signer"] ?>
-            <br />
-            <?= $listeContrats[$i]["id_salarie"] ?>
-            <?= $listeContrats[$i]["id_salarie_1"] ?>
-            <br />
-            <?= $listeContrats[$i]["code_client"] ?>
-            <?= $listeContrats[$i]["num_site"] ?>
+            <strong>Nombre de jours :</strong> <?= $contrat['nb_jour'] ?><br />
+            <strong>Enveloppe :</strong> <?= $contrat['enveloppe'] ?><br />
+            <strong>Signé le :</strong> <?= $contrat['signer'] ?><br />
+            <strong>Salarié 1 :</strong> <?= $contrat['id_salarie'] ?><br />
+            <strong>Salarié 2 :</strong> <?= $contrat['id_salarie_1'] ?><br />
+            <strong>Code client :</strong> <?= $contrat['code_client'] ?><br />
+            <strong>Numéro de site :</strong> <?= $contrat['num_site'] ?>
         </div>
-        <div class="">
-            <ul id="">		
-
-
-            </ul>
-
-
-        </div>
-
     </div>
-
-
-
-
-
-    <?php
-}
-?>
-
-
+<?php } ?>
