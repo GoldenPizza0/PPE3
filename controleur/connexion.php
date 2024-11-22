@@ -12,8 +12,8 @@ $menuBurger[] = Array("url"=>"./?uc=inscription","label"=>"Inscription");
 
 // recuperation des donnees GET, POST, et SESSION
 if (isset($_POST["username"]) && isset($_POST["mdp"])){
-    $mailU=$_POST["username"];
-    $mdpU=$_POST["mdp"];
+    $username=$_POST["username"];
+    $mdp=$_POST["mdp"];
 }
 else
 {
@@ -27,7 +27,7 @@ else
 login($username,$mdp);
 
 if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
-    include "$racine/controleur/monProfil.php";
+    include "$racine/controleur/listeContrats.php";
 }
 else{ // l'utilisateur n'est pas connecté
     $titre = "authentification";

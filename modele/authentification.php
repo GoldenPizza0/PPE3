@@ -8,14 +8,22 @@ function login($username, $mdp) {
     }
 
     $util = getUtilisateurByMail($username);
-    $mdpBD = $util["mdp"];
 
-    if (trim($mdpBD) == ($mdp, $mdpBD))) {
-        // le mot de passe est celui de l'utilisateur dans la base de donnees
-        $_SESSION["username"] = $username;
-        $_SESSION["mdp"] = $mdpBD;
+    // Vérification que l'utilisateur existe
+    if ($util && is_array($util)) {
+        $mdpBD = $util["mdp"];
+        
+        if ($mdpBD == $mdp) {
+            // Le mot de passe est correct
+            $_SESSION["username"] = $username;
+            $_SESSION["mdp"] = $mdpBD;
+        }
+    } else {
+        // Gérer le cas où l'utilisateur n'existe pas
+        error_log("Utilisateur non trouvé pour l'email : $username");
     }
 }
+
 
 function logout() {
     if (!isset($_SESSION)) {
