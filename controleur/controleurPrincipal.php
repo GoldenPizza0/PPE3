@@ -1,6 +1,6 @@
 <?php
 
-function controleurPrincipal($actiorn) {
+function controleurPrincipal($action) {
     $lesActions = array();
     $lesActions["defaut"] = "listeContrats.php";
     $lesActions["accueil"] = "listeContrats.php";
@@ -10,8 +10,8 @@ function controleurPrincipal($actiorn) {
     $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";
 
-    if (array_key_exists($actiorn, $lesActions)) {
-        return $lesActions[$actiorn];
+    if (array_key_exists($action, $lesActions)) {
+        return $lesActions[$action];
     } 
     else {
         return $lesActions["defaut"];

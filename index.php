@@ -10,6 +10,6 @@ else {
     $uc = "defaut";
 }
 
-$fichier = controleurPrincipal($action);
+$fichier = controleurPrincipal($uc);
 include "$racine/controleur/$fichier";
 ?>
