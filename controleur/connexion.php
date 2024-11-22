@@ -19,6 +19,8 @@ else
 {
     $username="";
     $mdp="";
+    $username="";
+    $mdp="";
 }
 
 
