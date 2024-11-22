@@ -4,29 +4,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title><?php echo $titre ?></title>
         <style type="text/css">
-            @import url("css/base.css");
-            @import url("css/form.css");
-            @import url("css/cgu.css");
-            @import url("css/corps.css");
+            @import url("css/styles.css");
         </style>
+        <link href="css/cssGeneral.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     </head>
     <body>
     <nav>
             
         <ul id="menuGeneral">
-            <li><a href="./?action=accueil">Accueil</a></li> 
-            <li><a href="./?action=recherche"><img src="images/rechercher.png" alt="loupe" />Recherche</a></li>
-            <li></li> 
+            <li id="logo"><a href="./?uc=accueil"><img src="images/steria.svg" style="width:64px;height:64px" alt="logo" /></a></li>
+            <li><a href="./?uc=recherche">Recherche</a></li>
+            <li><a href="./?uc=client">Client</a></li>
+            <li><a href="./?uc=salarie">Salarié</a></li>
+            <li><a href="./?uc=intervenant">Intervenant</a></li>
+            <li><a href="./?uc=commercial">Commercial</a></li>
+            <li><a href="./?uc=secteur">Secteur</a></li> 
 
-            <li id="logo"><a href="./?action=accueil"><img src="images/logoBarre.jpg" style="width:64px;height:64px" alt="logo" /></a></li>
+            
             <li></li> 
-            <li><a href="./?action=cgu">CGU</a></li>
+            <li><a href="./?uc=cgu">CGU</a></li>
             <?php if(isLoggedOn()){ ?>
-            <li><a href="./?action=profil"><img src="images/profil.png" alt="loupe" />Mon Profil</a></li>
+            <li><a href="./?uc=profil"><img src="images/profil.png" alt="loupe" />Mon Profil</a></li>
             <?php } 
             else{ ?>
-            <li><a href="./?action=connexion"><img src="images/profil.png" alt="loupe" />Connexion</a></li>
+            <li><a href="./?uc=connexion"><img src="images/profil.png" alt="loupe" />Connexion</a></li>
             <?php } ?>
 
         </ul>

@@ -9,21 +9,21 @@
         
 </head>
 <body>
-    <form action="index.php?uc=creerIntervenant&action=creationIntervenant" method="post">
+    <form action="index.php?uc=gererIntervenant&action=creationIntervenant" method="post">
         <p><H1>Liste des intervenants</H1><br>
 
         <table border=3 cellspacing=1 >
             <tr>
                 <td>Nom :</td>
                 <td>Prénom :</td>
-                <td>Niveau d'études:</td>
-                <td>Maîtrise de l'Anglais:</td>
+                <td>Niveau d'études :</td>
+                <td>Maîtrise de l'Anglais :</td>
             </tr> 
         <?php
 		
         foreach( $lesIntervenants as $unIntervenant)
         {
-            $num = $unIntervenant['id_salarie'];
+            $id = $unIntervenant['id_salarie'];
             $nom = $unIntervenant['nom_salarie'];
             $prenom = $unIntervenant['prenom_salarie'];
             $NE = $unIntervenant['niveau_etude'];
@@ -37,8 +37,8 @@
                 <?php 
 
                 ?>
-				<td width=30><a href=index.php?uc=modifierIntervenant&action=modificationIntervenant&num=<?php echo $num ?>><img src="images/modifier.gif" title="Modif"></a></td>
-                <td width=30><a href=index.php?uc=supprimerIntervenant&action=suppressionIntervenant&num=<?php echo $num ?>><img src="images/supp.png" title="Suppr"></a></td>
+				<td width=30><a href=index.php?uc=gererIntervenant&action=modificationIntervenant&id=<?php echo $id ?>><img src="images/modifier.gif" title="Modif"></a></td>
+                <td width=30><a href=index.php?uc=gererIntervenant&action=suppressionIntervenant&id=<?php echo $id ?>><img src="images/supp.png" title="Suppr"></a></td>
             </tr>
             <?php 
         }
