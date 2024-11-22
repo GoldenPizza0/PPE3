@@ -1,40 +1,43 @@
 <?php
 include("vues/entete.php");	
 
-foreach($lesClientsEtSites as $UnClient){
+?>
+<table >
+    <tr>
+        <th>societe</th>
+        <th>adresse</th>
+        <th>secteur</th>
+    </tr>
+    <?php
+    foreach($lesClientsEtSites as $UnClient){
     ?>
-    <table >
-        <tr>
-            <th>societe</th>
-            <th>adresse</th>
-            <th>secteur</th>
-        </tr>
         <button onclick="MontrerSitesDeClients($UnClient['client'])">
             <tr>
                 <td><?php echo $UnClient["societe"];?></td>
                 <td><?php echo $UnClient["adresse"];?></td>
                 <td><?php echo $UnClient["secteur"];?></td>
             </tr>
-            <?php
-            foreach($UnClient["sites"] as $UnSite){
-            ?>
-                <table id=<?php echo $UnSite["client"];?> hidden=true>
+            
+        </button>
+            <table>
                     <tr>
                         <th>nom</th>
                         <th>adresse</th>
                         <th>référent</th>
                     </tr>
-                    <tr>
-                        <td><?php echo $UnSite["nom"];?></td>
-                        <td><?php echo $UnClient["adresse"];?></td>
-                        <td><?php echo $UnSite["referent"];?></td>
-                    </tr>
-                </table>
+            <?php
+            foreach($UnClient["sites"] as $UnSite){
+            ?>
+                <tr id = $UnClient['client']>
+                    <td><?php echo $UnSite["nom"];?></td>
+                    <td><?php echo $UnClient["adresse"];?></td>
+                    <td><?php echo $UnSite["referent"];?></td>
+                </tr>
             <?php
             }
             ?>
-        </button>
-    </table>
-<?php
-}
-?>
+            </table>
+    <?php
+    }
+    ?>
+</table>
