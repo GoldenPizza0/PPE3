@@ -1,5 +1,6 @@
 <h1>Liste des contrats</h1>
 <?php
+if(getcontrat()!=false){
 foreach ($listeContrats as $contrat) { ?>
     <div class="card">
         <div>
@@ -17,4 +18,5 @@ foreach ($listeContrats as $contrat) { ?>
             <strong>Numéro de site :</strong> <?= $contrat['num_site'] ?>
         </div>
     </div>
-<?php } ?>
+<?php }} ?>
+<a href="./?uc=ajouterContrat">AJOUT CONTRAT</a>

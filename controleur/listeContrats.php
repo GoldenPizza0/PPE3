@@ -17,9 +17,9 @@ $listeContrats = getContrat();
 // appel du script de vue qui permet de gerer l'affichage des donnees
 $titre = "Liste des contrats répertoriés";
 include "$racine/vue/entete.php";
-if(getcontrat()!=false){
+
 include "$racine/vue/v_listeContrats.php";
-}
+
 include "$racine/vue/pied.php";
 
 

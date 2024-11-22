@@ -49,5 +49,25 @@ function getContratByNomR($nomR) {
         return false;
     }
 }
+function ajouterContrat($No_contrat, $nb_jour, $enveloppe, $signer, $id_salarie, $id_salarie_1, $code_client, $num_site) {
+    try {
+        $cnx = connexionPDO();
+        $sql = "INSERT INTO contrat (No_contrat, nb_jour, enveloppe, signer, id_salarie, id_salarie_1, code_client, num_site) 
+                VALUES (:No_contrat, :nb_jour, :enveloppe, :signer, :id_salarie, :id_salarie_1, :code_client, :num_site)";
+        $req = $cnx->prepare($sql);
+        $req->bindParam(':No_contrat', $No_contrat);
+        $req->bindParam(':nb_jour', $nb_jour);
+        $req->bindParam(':enveloppe', $enveloppe);
+        $req->bindParam(':signer', $signer);
+        $req->bindParam(':id_salarie', $id_salarie);
+        $req->bindParam(':id_salarie_1', $id_salarie_1);
+        $req->bindParam(':code_client', $code_client);
+        $req->bindParam(':num_site', $num_site);
+        return $req->execute();
+    } catch (PDOException $e) {
+        error_log("Erreur lors de l'ajout d'un contrat : " . $e->getMessage());
+        return false;
+    }
+}
 
 ?>
