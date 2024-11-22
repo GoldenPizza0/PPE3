@@ -1,3 +1,5 @@
+
+<link href="modele/cssGeneral.css" rel="stylesheet" type="text/css" /> 
 <?php
 include "getRacine.php";
 include "$racine/controleur/controleurPrincipal.php";

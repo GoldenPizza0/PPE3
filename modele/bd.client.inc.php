@@ -22,7 +22,7 @@ function getLesClientsEtSites() {
         $lesclients = array();
         $cnx = connexionPDO();
         $req = $cnx->prepare("
-            SELECT * FROM client 
+            SELECT code_client,adresse,societe,libelle_act as id_act FROM client join secteur on client.id_act = secteur.id_act
         ");
         $req->execute();
         $listeclient = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -38,8 +38,8 @@ function getLesClientsEtSites() {
                 'code_client' => $client['code_client'],
                 'adresse' => $client['adresse'],
                 'societe' => $client['societe'],
-                'activites' => $client['id_act'],
-                'les sites' => $listesite,
+                'activite' => $client['id_act'],
+                'sites' => $listesite,
 
             ];
             $lesclients = [$unclient];

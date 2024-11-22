@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <title><?php echo $titre ?></title>
         <style type="text/css">
-            @import url("css/styles.css");
+            @import url("../modele/cssGeneral.css");
         </style>
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     </head>
