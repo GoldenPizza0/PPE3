@@ -1,6 +1,7 @@
 
 <?php
 // $action :variable d'aiguillage
+echo 'action : ', $_GET["action"];
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 } 
@@ -13,6 +14,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/modele/bd.client.inc.php";
 include "vue/entete.php";
+echo $action;
 switch($action)
 {
     case 'voirTableauClientSite':
@@ -30,58 +32,38 @@ switch($action)
         }
         break;
     }
-    // case 'Supprimer':
-    // {
-    //     $libelle = $_REQUEST['libelle'];
-    //     switch($libelle)
-    //     {
-    //         case 'Client':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-    //         case 'Site':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-    //         case 'Secteur':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-    //     }
-    // }
-    // case 'Modifier' :
-    // {
-    //     $libelle = $_REQUEST['libelle'];
-    //     switch($libelle)
-    //     {
-    //         case 'Client':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-    //         case 'Site':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-    //         case 'Secteur':
-    //         {
-    //             $id = $_REQUEST['id'];
-
-
-    //         }
-
-
-    //     }
-    // }
+    case 'SupprimerClient':
+    {
+        $libelle = $_POST['idClient'];
+        echo $libelle;
+        SuppClient($libelle);
+        include("vue/v_tableauAdminClient.php");
+    }
+    case 'SupprimerSite':
+    {
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+    }
+    case 'SupprimerSecteur':
+    {
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+    }
+    case 'ModifierClient' :
+    {
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+    }
+    case 'ModifierSite' :
+    {
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+    }
+    case 'ModifierSecteur' :
+    {
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+    }
     // case 'Creer':
     // {
     //     $libelle = $_REQUEST['libelle'];
@@ -102,9 +84,6 @@ switch($action)
 
 
     //         }
-
-
-
 
     //     }
     // }

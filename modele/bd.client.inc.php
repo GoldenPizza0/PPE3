@@ -60,4 +60,15 @@ function getLesClientsEtSites() {
         return false;
     }
 }
+function SuppClient($idClient) {
+    try {
+        $cnx = connexionPDO();
+        $cnx->query("
+        Delete FROM site where code_client = ".$idClient.";
+        Delete FROM client where code_client = ".$idClient.";");
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
 ?>
