@@ -8,6 +8,7 @@ include_once "$racine/modele/bd.intervenant.php";
 include_once "$racine/modele/bd.site.php";
 
 if(getSite()!=false && getIntervenant()!=false && getCommercial()!=false){
+$idcontrat = getMaxIdContrat();
 $sites = getSite();
 $intervenants = getIntervenant() ;
 $commerciaux = getCommercial();

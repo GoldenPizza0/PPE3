@@ -4,7 +4,9 @@
     <h2>Ajouter un nouveau contrat</h2>
     <form action="./?uc=ajouterContrat" method="POST">
         <label for="No_contrat">Numéro de contrat :</label>
-        <input type="number" id="No_contrat" name="No_contrat" required>
+        <?php 
+        echo "<input type='number' id='No_contrat' name='No_contrat' min='". $idcontrat +1 ."' required>";
+        ?>
         <br />
         
         <label for="nb_jour">Nombre de jours :</label>

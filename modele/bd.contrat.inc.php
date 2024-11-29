@@ -18,6 +18,20 @@ function getContratByIdR($idR) {
         return false;
     }
 }
+ 
+function getMaxIdContrat() {
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("SELECT max(No_contrat) FROM contrat"); // Changer id_salarie en id_contrat si nécessaire
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC); // Retourne un seul résultat
+        return $result['max(No_contrat)']; // Récupère directement l'id max
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
+
 
 // Récupère tous les contrats
 function getContrat() {
