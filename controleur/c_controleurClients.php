@@ -29,31 +29,33 @@ switch($action)
         }
         break;
     }
-    // case 'Supprimer':
-    // {
-    //     $libelle = $_REQUEST['libelle'];
-    //     switch($libelle)
-    //     {
-    //         case 'Client':
-    //         {
-    //             $id = $_REQUEST['id'];
+    case 'Supprimer':
+    {
+        if (isset($_GET["libelle"])) {
+            $libelle = $_GET["libelle"];
+        } 
+        switch($libelle)
+        {
+            case 'Client':
+            {
+                $id = $_REQUEST['idClient'];
 
 
-    //         }
-    //         case 'Site':
-    //         {
-    //             $id = $_REQUEST['id'];
+            }
+            case 'Site':
+            {
+                $id = $_REQUEST['id'];
 
 
-    //         }
-    //         case 'Secteur':
-    //         {
-    //             $id = $_REQUEST['id'];
+            }
+            case 'Secteur':
+            {
+                $id = $_REQUEST['id'];
 
 
-    //         }
-    //     }
-    // }
+            }
+        }
+    }
     // case 'Modifier' :
     // {
     //     $libelle = $_REQUEST['libelle'];
