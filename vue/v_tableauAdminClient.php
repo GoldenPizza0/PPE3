@@ -1,5 +1,5 @@
 <?php
-include("vues/entete.php");	
+include("vue/entete.php");	
 ?> 
 <style>
 table {
