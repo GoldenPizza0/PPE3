@@ -50,7 +50,7 @@ function getContratByNomR($nomR) {
     }
 }
 
-// Récupère tous les contrats
+// Récupère tous les clients
 function nbClients() {
     try {
         $cnx = connexionPDO();
@@ -64,7 +64,7 @@ function nbClients() {
     }
 }
 
-// Récupère les contrats par l'identifiant d'un salarié (id_salarie ou id_salarie_1)
+// Récupère les clients et leurs sites
 function getLesClientsEtSites() {
     try {
         $listeclient = array();
@@ -74,7 +74,7 @@ function getLesClientsEtSites() {
             SELECT code_client,adresse,societe,libelle_act as id_act FROM client join secteur on client.id_act = secteur.id_act
         ");
         $req->execute();
-        $listeclient = $req->fetchAll(PDO::FETCH_ASSOC);
+        $listeclient = $req->fetchALL(PDO::FETCH_ASSOC);
         foreach($listeclient as $client){
             $cnx = connexionPDO();
             $req = $cnx->prepare("
@@ -82,8 +82,8 @@ function getLesClientsEtSites() {
                 where code_client = ".$client['code_client']." 
             ");
             $req->execute();
-            $listesite = $req->fetchAll(PDO::FETCH_ASSOC);
-            $listesites = [];
+            $listesite = $req->fetchALL(PDO::FETCH_ASSOC);
+            $listesites = array();
             foreach($listesite as $site){
                 $unsite = [
                     'num_site' => $site['num_site'],
@@ -91,7 +91,7 @@ function getLesClientsEtSites() {
                     'adresse_site' => $site['adresse_site'],
                     'referent' => $site['referent']
                 ];
-                $listesites = [$unsite];
+                array_push($listesites,$unsite);
             }
             $unclient = [
                 'code_client' => $client['code_client'],
@@ -101,7 +101,7 @@ function getLesClientsEtSites() {
                 'sites' => $listesites,
 
             ];
-            $lesclients = [$unclient];
+            array_push($lesclients,$unclient);
         }
         return $lesclients;
     } catch (Exception $e) {
@@ -109,4 +109,6 @@ function getLesClientsEtSites() {
         return false;
     }
 }
+
+
 ?>
