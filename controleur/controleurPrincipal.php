@@ -6,7 +6,6 @@ function controleurPrincipal($action) {
     $lesActions["accueil"] = "listeContrats.php";
     $lesActions["client"] = "c_controleurClients.php";
     $lesActions["detail"] = "d.php";
-    $lesActions["recherche"] = "recherche.php";
     $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["intervenant"] = "c_gererIntervenant.php";
