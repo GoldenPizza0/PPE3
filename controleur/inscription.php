@@ -14,15 +14,14 @@ $menuBurger[] = Array("url"=>"./?uc=inscription","label"=>"Inscription");
 $inscrit = false;
 $msg="";
 // recuperation des donnees GET, POST, et SESSION
-if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"])) {
+if (isset($_POST["username"]) && isset($_POST["mdp"])) {
 
-    if ($_POST["mailU"] != "" && $_POST["mdpU"] != "" && $_POST["pseudoU"] != "") {
-        $mailU = $_POST["mailU"];
-        $mdpU = $_POST["mdpU"];
-        $pseudoU = $_POST["pseudoU"];
+    if ($_POST["username"] != "" && $_POST["mdpU"] != "" ) {
+        $username = $_POST["username"];
+        $mdp = $_POST["mdp"];
 
         // enregistrement des donnees
-        $ret = addUtilisateur($mailU, $mdpU, $pseudoU);
+        $ret = addUtilisateur($username, $mdp);
         if ($ret) {
             $inscrit = true;
         } else {
@@ -37,14 +36,14 @@ if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"]))
 if ($inscrit) {
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Inscription confirmée";
-    include "$racine/vue/entete.php";
-    include "$racine/vue/vueAuthentification.php";
-    include "$racine/vue/pied.php";
+    include "$racine/vue/entete.html.php";
+    include "$racine/vue/vueConfirmationInscription.php";
+    include "$racine/vue/pied.html.php";
 } else {
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Inscription pb";
-    include "$racine/vue/entete.php";
+    include "$racine/vue/entete.html.php";
     include "$racine/vue/vueInscription.php";
-    include "$racine/vue/pied.php";
+    include "$racine/vue/pied.html.php";
 }
 ?>

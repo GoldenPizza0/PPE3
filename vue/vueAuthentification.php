@@ -11,6 +11,6 @@
 
 <hr>
 Utilisateur de test : <br />
-login : test@bts.sio<br />
+login : test<br />
 mot de passe : sio
 
