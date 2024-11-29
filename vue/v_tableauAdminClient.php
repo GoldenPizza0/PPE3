@@ -35,9 +35,8 @@ foreach($lesClientsEtSites as $UnClient){
             <?php
             if ($_POST['button'] == $UnClient['code_client']){
             ?>
-                <table>
                     <tr>
-                        <th>nom</th>
+                        <th>sites</th>
                         <th>adresse</th>
                         <th>référent</th>
                     </tr>
@@ -52,10 +51,10 @@ foreach($lesClientsEtSites as $UnClient){
                     <?php
                     }
                     ?>
-                </table>
             <?php
             }
             ?>
+
 <?php
 }
 ?>
