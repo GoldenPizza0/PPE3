@@ -34,12 +34,22 @@ function getLesClientsEtSites() {
             ");
             $req->execute();
             $listesite = $req->fetchAll(PDO::FETCH_ASSOC);
+            $listesites = [];
+            foreach($listesite as $site){
+                $unsite = [
+                    'num_site' => $site['num_site'],
+                    'nom_site' => $site['nom_site'],
+                    'adresse_site' => $site['adresse_site'],
+                    'referent' => $site['referent']
+                ];
+                $listesites = [$unsite];
+            }
             $unclient = [
                 'code_client' => $client['code_client'],
                 'adresse' => $client['adresse'],
                 'societe' => $client['societe'],
                 'activite' => $client['id_act'],
-                'sites' => $listesite,
+                'sites' => $listesites,
 
             ];
             $lesclients = [$unclient];

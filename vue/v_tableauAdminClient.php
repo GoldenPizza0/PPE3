@@ -1,6 +1,5 @@
 <?php
 include("vues/entete.php");	
-include("modele/fonction.client.php");	
 ?> 
 <style>
 table {
@@ -16,39 +15,49 @@ tr:hover {
     background-color: #f5f5f5;
 }
 </style>
+<form method="POST" action="./?uc=client">
 <table >
 <tr>
     <th>societe</th>
     <th>adresse</th>
     <th>secteur</th>
+    <th>afficher site</th>
 </tr>
 <?php
 foreach($lesClientsEtSites as $UnClient){
     ?>
-            <tr onclick="MontrerSitesDeClients(<?php echo $UnClient['code_client'];?>)">
+            <tr>
                 <td><?php echo $UnClient["societe"];?></td>
                 <td><?php echo $UnClient["adresse"];?></td>
                 <td><?php echo $UnClient["activite"];?></td>
+                <td><a href="./?uc=client"><button name="button" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
             </tr>
-            <table value="sous-tableau" id=<?php echo $UnClient['code_client'];?> hidden=true>
-                <tr>
-                    <th>nom</th>
-                    <th>adresse</th>
-                    <th>référent</th>
-                </tr>
-                <?php
-                foreach($UnClient["sites"] as $UnSite){
-                ?>
+            <?php
+            if ($_POST['button'] == $UnClient['code_client']){
+            ?>
+                <table>
                     <tr>
-                        <td><?php echo $UnSite["nom_site"];?></td>
-                        <td><?php echo $UnSite["adresse_site"];?></td>
-                        <td><?php echo $UnSite["referent"];?></td>
+                        <th>nom</th>
+                        <th>adresse</th>
+                        <th>référent</th>
                     </tr>
-                <?php
-                }
-                ?>
-            </table>
-    </table>
+                    <?php
+                    foreach($UnClient["sites"] as $UnSite){
+                    ?>
+                        <tr>
+                            <td><?php echo $UnSite["nom_site"];?></td>
+                            <td><?php echo $UnSite["adresse_site"];?></td>
+                            <td><?php echo $UnSite["referent"];?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </table>
+            <?php
+            }
+            ?>
 <?php
 }
 ?>
+</table>
+</form>
