@@ -12,27 +12,52 @@
         <br />
         
         <label for="enveloppe">Enveloppe :</label>
-        <input type="number" id="enveloppe" name="enveloppe" required>
+        <input type="number" id="enveloppe" name="enveloppe" min="0" required>
         <br />
         
         <label for="signer">Date de signature :</label>
         <input type="date" id="signer" name="signer" required>
         <br />
         
-        <label for="id_salarie">ID Salarié 1 :</label>
-        <input type="number" id="id_salarie" name="id_salarie" required>
+        <label for="id_salarie">ID Salarié 1 : liste</label>
+        <select name="id_salarie" id="id_salarie" required>
+        <?php 
+        foreach($intervenants as $intervenant) {
+            echo "<option value='" . $intervenant["id_salarie"] . "'>" . $intervenant["id_salarie"] . "</option>";
+        }
+        ?>
+        
+        </select>
         <br />
         
-        <label for="id_salarie_1">ID Salarié 2 :</label>
-        <input type="number" id="id_salarie_1" name="id_salarie_1" required>
+        <label for="id_salarie_1">ID Salarié 2 :liste</label>
+        <select name="id_salarie_1" id="id_salarie_1" required>
+        <?php 
+        foreach($commerciaux as $commercial){
+            echo "<option value='" . $commercial["id_salarie"] . "'>" . $commercial["id_salarie"] . "</option>";
+        }
+        ?>
+        </select>
         <br />
         
-        <label for="code_client">Code client :</label>
-        <input type="number" id="code_client" name="code_client" required>
+        <label for="code_client">Code client :liste</label>
+        <select name="code_client" id="code_client" required>
+        <?php 
+        foreach($sites as $site){
+            echo "<option value='" . $site["code_client"] . "'>" . $site["code_client"] . "</option>";
+        }
+        ?>
+        </select>
         <br />
         
-        <label for="num_site">Numéro de site :</label>
-        <input type="number" id="num_site" name="num_site" required>
+        <label for="num_site">Numéro de site :liste</label>
+        <select name="num_site" id="num_site" required>
+        <?php 
+        foreach($sites as $site){
+            echo "<option value='" . $site["num_site"] . "'>" . $site["num_site"] . "</option>";
+        }
+        ?>
+        </select>
         <br />
         
         <input type="submit" value="Ajouter le contrat">

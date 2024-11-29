@@ -36,7 +36,7 @@
         <div></div>
     </div>
     <ul id="menuContextuel">
-        <li><img src="images/logoBarre.png" alt="logo" /></li>
+        <li><img src="images/steria.svg" style="width:64px;height:64px" alt="logo" /></li>
         <?php if (isset($menuBurger)) { ?>
             <?php foreach ($menuBurger as $item) { ?>
                 <li>

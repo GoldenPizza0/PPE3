@@ -3,7 +3,15 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 include_once "$racine/modele/bd.contrat.inc.php";
+include_once "$racine/modele/bd.commercial.php";
+include_once "$racine/modele/bd.intervenant.php";
+include_once "$racine/modele/bd.site.php";
 
+if(getSite()!=false && getIntervenant()!=false && getCommercial()!=false){
+$sites = getSite();
+$intervenants = getIntervenant() ;
+$commerciaux = getCommercial();
+}
 // Récupération des données du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $No_contrat = $_POST['No_contrat'];
