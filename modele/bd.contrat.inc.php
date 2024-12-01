@@ -28,7 +28,7 @@ function getMaxIdContrat() {
         return $result['max(No_contrat)']; // Récupère directement l'id max
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage();
-        return false;
+        return 0;
     }
 }
 

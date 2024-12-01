@@ -3,15 +3,17 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 include_once "$racine/modele/bd.contrat.inc.php";
+include_once "$racine/modele/bd.client.inc.php";
 include_once "$racine/modele/bd.commercial.php";
 include_once "$racine/modele/bd.intervenant.php";
 include_once "$racine/modele/bd.site.php";
 
 if(getSite()!=false && getIntervenant()!=false && getCommercial()!=false){
-$idcontrat = getMaxIdContrat();
-$sites = getSite();
-$intervenants = getIntervenant() ;
-$commerciaux = getCommercial();
+    $idcontrat = getMaxIdContrat();
+    $sites = getSite();
+    $clients = getClient();
+    $intervenants = getIntervenant();
+    $commerciaux = getCommercial();
 }
 // Récupération des données du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_salarie_1 = $_POST['id_salarie_1'];
     $code_client = $_POST['code_client'];
     $num_site = $_POST['num_site'];
-
     // Appel à la fonction pour ajouter un contrat
     $result = ajouterContrat($No_contrat, $nb_jour, $enveloppe, $signer, $id_salarie, $id_salarie_1, $code_client, $num_site);
     
     if ($result) {
         $message = "Contrat ajouté avec succès.";
+        include "$racine/controleur/listeContrats.php";
     } else {
         $message = "Erreur lors de l'ajout du contrat.";
     }

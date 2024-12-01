@@ -11,6 +11,8 @@ if(getcontrat() != false){
             <th>Salarié 2</th>
             <th>Code client</th>
             <th>Numéro de site</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
           </tr>";
 
     foreach ($listeContrats as $contrat) {
@@ -23,6 +25,8 @@ if(getcontrat() != false){
                 <td>" . $contrat['id_salarie_1'] . "</td>
                 <td>" . $contrat['code_client'] . "</td>
                 <td>" . $contrat['num_site'] . "</td>
+                <td><a href='./?uc=gererContrat&action=modificationContrat&No_contrat=". $contrat['No_contrat'] ."'><img src='images/modifier.gif' title='Modif'></a></td>
+                <td><a href='./?uc=gererContrat&action=suppressionContrat&No_contrat= ". $contrat['No_contrat'] ."'><img src='images/supp.png' title='Suppr'></a></td>
               </tr>";
     }
 
