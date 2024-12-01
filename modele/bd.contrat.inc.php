@@ -83,5 +83,18 @@ function ajouterContrat($No_contrat, $nb_jour, $enveloppe, $signer, $id_salarie,
         return false;
     }
 }
+function updateContrat($No_contrat, $nb_jour, $enveloppe) {
+    global $pdo;
+    $sql = "UPDATE contrats SET nb_jour = :nb_jour, enveloppe = :enveloppe WHERE No_contrat = :No_contrat";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute(['nb_jour' => $nb_jour, 'enveloppe' => $enveloppe, 'No_contrat' => $No_contrat]);
+}
+
+function deleteContrat($No_contrat) {
+    global $pdo;
+    $sql = "DELETE FROM contrats WHERE No_contrat = :No_contrat";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute(['No_contrat' => $No_contrat]);
+}
 
 ?>

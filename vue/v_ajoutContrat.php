@@ -1,4 +1,4 @@
-<h1>Ajout, Suppression et modification des contrats</h1>
+
 <!-- Formulaire pour ajouter un contrat -->
 <div class="card">
     <h2>Ajouter un nouveau contrat</h2>

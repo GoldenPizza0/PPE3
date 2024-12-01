@@ -25,7 +25,9 @@ if ($listeContrats = getContrat()) {
     $listeContrats = []; // Évite une erreur de boucle dans la vue
 }
 
-
+if (isset($_GET['message'])) {
+    echo "<p>" . htmlspecialchars($_GET['message']) . "</p>";
+}
 
 
     include "$racine/vue/entete.php";
