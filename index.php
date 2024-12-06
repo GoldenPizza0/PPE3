@@ -2,9 +2,9 @@
     include "getRacine.php";
     include "$racine/controleur/controleurPrincipal.php";
     include_once "$racine/modele/authentification.php"; // pour pouvoir utiliser isLoggedOn()
-    require_once("modele/class.pdoEsteria.inc.php");
+    require_once("modele/class.pdoSteria.inc.php");
     
-    $pdo = PdoEsteria::getPdoEsteria();	
+    $pdo = PdoSteria::getPdoEsteria();	
     if (isset($_GET["uc"])) {
         $uc = $_GET["uc"];
     } 

@@ -12,6 +12,7 @@ function controleurPrincipal($action) {
     $lesActions["intervenant"] = "c_gererIntervenant.php";
     $lesActions["commercial"] = "c_gererCommercial.php";
     $lesActions["secteur"] = "c_gererSecteur.php";
+    $lesActions["intervention"] = "c_gererIntervention.php";
 
     if (array_key_exists($action, $lesActions)) {
         return $lesActions[$action];
