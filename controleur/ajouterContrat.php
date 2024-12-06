@@ -39,13 +39,18 @@ if ($action === "ajout" && $_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $result ? "Contrat ajouté avec succès." : "Erreur lors de l'ajout du contrat.";
 } elseif ($action === "modificationContrat") {
     // Code pour modification
-    $No_contrat = $_GET['No_contrat'];
-    $contrat = getContratByIdR($No_contrat); // Récupération du contrat à modifier
+    $contrat = getContratByIdR($_GET['No_contrat']); // Récupération du contrat à modifier
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mise à jour des données
+        $id_Contrat = $_POST['id'];
         $nb_jour = $_POST['nb_jour'];
         $enveloppe = $_POST['enveloppe'];
-        $result = updateContrat($No_contrat, $nb_jour, $enveloppe); // Fonction de mise à jour
+        $signature = $_POST['signer'];
+        $salarie1= $_POST['id_salarie'];
+        $salarie2= $_POST['id_salarie_1'];
+        $codeclient= $_POST['code_client'];
+        $numsite= $_POST['num_site'];
+        $result = updateContrat($id_Contrat, $nb_jour, $enveloppe, $signature, $salarie1, $salarie2,  $codeclient, $numsite); // Fonction de mise à jour
         $message = $result ? "Contrat modifié avec succès." : "Erreur lors de la modification.";
     }
     include "$racine/vue/entete.php";

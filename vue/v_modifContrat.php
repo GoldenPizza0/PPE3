@@ -9,27 +9,29 @@
 	
    <body>
    <p><h1>Modification Commercial :</h1></p><BR/>
-	<form action="index.php?uc=gererCommercial&action=confirmModifCommercial" method="post">
+	<form action="./?uc=gererContrat&action=modificationContrat" method="post">
 		<table>
 		<?php
 			foreach($contrat as $unChamp){
-				$id_Contrat = $unChamp['No_contrat'];
+				$No_contrat = $unChamp['No_contrat'];
 				$nom = $unChamp['nb_jour'];
-				$prenom = $unChamp['enveloppe'];
-				$portable = $unChamp['signer'];
-				$fixe = $unChamp['id_salarie'];
-				$secteur = $unChamp['id_salarie_1'];
-                $secteur = $unChamp['code_client'];
-                $secteur = $unChamp['num_site'];
+				$enveloppe = $unChamp['enveloppe'];
+				$signature = $unChamp['signer'];
+				$salarie1 = $unChamp['id_salarie'];
+				$salarie2 = $unChamp['id_salarie_1'];
+                $codeclient = $unChamp['code_client'];
+                $numsite = $unChamp['num_site'];
 			}
 		?>
 		<tbody>
-			<input type=hidden name="TId" value = "<?php echo $id_Commercial; ?>">
-			<tr><td>Nom</td><td><input name="TNom" size=20 value = "<?php echo $nom; ?>"></td></tr>
-			<tr><td>Prenom </td><td><input name="TPrenom" size=20 value = "<?php echo $prenom; ?>"></td></tr>	
-			<tr><td>Portable</td><td><input name="TPortable" size=10 value = "<?php echo $portable; ?>"></td></tr>	
-			<tr><td>Fixe</td><td><input name="TFixe" size=10 value = "<?php echo $fixe; ?>"></td></tr>
-			<tr><td>Secteur</td><td><input name="TSecteur" size=15 value = "<?php echo $secteur; ?>"></td></tr>
+			<tr><td>Numéro du contrat sélectionné</td><td><?php echo $No_contrat; ?><input name="id" type="hidden" size=20 value = "<?php echo $id_Contrat; ?>"></td></tr>
+			<tr><td>Nombre de jours</td><td><input name="nb_jour" size=20 value = "<?php echo $nom; ?>"></td></tr>
+			<tr><td>Enveloppe </td><td><input name="enveloppe" size=20 value = "<?php echo $enveloppe; ?>"></td></tr>	
+			<tr><td>Signé le </td><td><input name="signer" type="date" size=10 value = "<?php echo $signature; ?>"></td></tr>	
+			<tr><td>Salarié 1</td><td><input name="id_salarie" size=10 value = "<?php echo $salarie1; ?>"></td></tr>
+			<tr><td>Salarié 2</td><td><input name="id_salarie_1" size=15 value = "<?php echo $salarie2; ?>"></td></tr>
+			<tr><td>Code client</td><td><input name="code_client" size=15 value = "<?php echo $codeclient; ?>"></td></tr>
+			<tr><td>Numéro de site</td><td><input name="num_site" size=15 value = "<?php echo $numsite; ?>"></td></tr>
 		</tbody>
 		</table>
 		

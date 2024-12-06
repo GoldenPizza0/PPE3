@@ -83,12 +83,34 @@ function ajouterContrat($No_contrat, $nb_jour, $enveloppe, $signer, $id_salarie,
         return false;
     }
 }
-function updateContrat($No_contrat, $nb_jour, $enveloppe) {
+function updateContrat($id_Contrat, $nb_jour, $enveloppe, $signature1, $id_salarie, $id_salarie_1, $code_client, $num_site) {
     global $pdo;
-    $sql = "UPDATE contrats SET nb_jour = :nb_jour, enveloppe = :enveloppe WHERE No_contrat = :No_contrat";
+
+    $sql = "UPDATE contrat
+            SET nb_jour = :nb_jour, 
+                enveloppe = :enveloppe, 
+                signer = :signature1, 
+                id_salarie = :id_salarie, 
+                id_salarie_1 = :id_salarie_1, 
+                code_client = :code_client, 
+                num_site = :num_site 
+            WHERE No_contrat = :No_contrat";
+
     $stmt = $pdo->prepare($sql);
-    return $stmt->execute(['nb_jour' => $nb_jour, 'enveloppe' => $enveloppe, 'No_contrat' => $No_contrat]);
+
+    // Exécute la requête en associant les paramètres
+    return $stmt->execute([
+        'nb_jour' => $nb_jour,
+        'enveloppe' => $enveloppe,
+        'signer' => $signature1,
+        'id_salarie' => $id_salarie,
+        'id_salarie_1' => $id_salarie_1,
+        'code_client' => $code_client,
+        'num_site' => $num_site,
+        'No_contrat' => $id_Contrat
+    ]);
 }
+
 
 function deleteContrat($No_contrat) {
     global $pdo;
