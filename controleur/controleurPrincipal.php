@@ -10,6 +10,7 @@ function controleurPrincipal($action) {
         "connexion" => "connexion.php",
         "deconnexion" => "deconnexion.php",
         "intervenant" => "c_gererIntervenant.php",
+        "Domaine_Technique" => "gererdomaine.php",
         "commercial" => "c_gererCommercial.php",
         "secteur" => "c_gererSecteur.php",
     ];
