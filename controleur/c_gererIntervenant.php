@@ -10,6 +10,7 @@
 		$racine = "..";
 	}
 
+	$titre = "Gestion Intervenant";
 	include "vue/entete.php";
 	
 	switch($action)

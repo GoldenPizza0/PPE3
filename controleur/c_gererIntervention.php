@@ -10,6 +10,7 @@
 		$racine = "..";
 	}
 
+	$titre = "Gestion Interventions";
 	include "vue/entete.php";
 	
 	switch($action)
@@ -48,12 +49,15 @@
 		}
 		case 'confirmModifIntervention':
 		{
-			$id_Intervenant = $_REQUEST['TId'];
-			$nom = $_REQUEST['TNom'];
-			$prenom = $_REQUEST['TPrenom'];
-			$niveauEtudes = $_REQUEST['TNE'];
-			$maitreAnglais = $_REQUEST['TMA'];
-			$pdo->modifierIntervention($id_Intervenant,$nom,$prenom,$niveauEtudes,$maitreAnglais);
+			$numI = $_REQUEST['TNum'];
+			$noC = $_REQUEST['TNoC'];
+			$intitule = $_REQUEST['TInt'];
+			$debut = $_REQUEST['TD'];
+			$fin = $_REQUEST['TF'];
+			$prix = $_REQUEST['TP'];
+			$etat = $_REQUEST['TE'];
+			$domaine = $_REQUEST['TDomaine'];
+			$pdo->modifierIntervention($noC,$numI,$intitule,$debut,$fin,$prix,$etat,$domaine);
 			
 			include("vue/v_interventions_redirection.php");	
 			break;

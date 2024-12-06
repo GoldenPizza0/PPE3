@@ -109,6 +109,19 @@ class PdoSteria
         return $lesLignes;
     }
 	/**
+	 * Retourne les Domaines sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif des domaines
+	*/
+	function getLesContrats()
+	{
+        $pdo = connexionPDO();
+        $req = "select No_contrat from contrat";
+        $res = $pdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+	/**
 	 * Retourne un Intervenant sous forme d'un tableau associatif
 	 *
 	 * @return le tableau associatif de un intervenant
@@ -152,18 +165,6 @@ class PdoSteria
 	public function getUneIntervention($num_Intervention)
 	{
 		$req = "select * from intervention where num_intervention = $num_Intervention";
-		$res = PdoSteria::$monPdo->query($req);
-		$laLigne = $res->fetchAll();
-		return $laLigne;
-	}
-	/**
-	 * Retourne un Domaine sous forme d'un tableau associatif
-	 *
-	 * @return le tableau associatif de un domaine
-	*/
-	public function getUnDomaine($code_domaine)
-	{
-		$req = "select * from domaine where code_domaine = $code_domaine";
 		$res = PdoSteria::$monPdo->query($req);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
@@ -240,7 +241,9 @@ class PdoSteria
 	{ 
 		$res1 = PdoSteria::$monPdo->query("SELECT MAX(num_intervention)+1 as num FROM intervention WHERE No_contrat = '$noC'");
 		(int)$num_intervention = $res1->fetchColumn();
-		echo $num_intervention;
+		if ($num_intervention == 0){
+			$num_intervention = 1;
+		}
 		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO intervention (No_contrat, num_intervention, intitule, debut, fin, prix, 
 		etat, code_domaine) VALUES( :noC, :numI, :intitule, :debut, :fin, :prix, :etat, :domaine)');
 		$res2->bindValue('noC',$noC, PDO::PARAM_STR);
@@ -309,6 +312,26 @@ class PdoSteria
 		$res1->execute();
 	}
 	/**
+	 * Modifier une intervention
+	 *
+	 * Modifier une intervention à partir des arguments validés passés en paramètre
+	*/
+	public function modifierIntervention($noC, $num, $intitule, $debut, $fin, $prix, $etat, $domaine)
+	{
+		$res1 = PdoSteria::$monPdo->prepare('UPDATE intervention SET No_contrat = :noC,
+			intitule = :intitule, debut = :debut, fin = :fin, prix = :prix,
+			etat = :etat, code_domaine = :domaine WHERE num_intervention = :num');
+		$res1->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res1->bindValue('num',$num, PDO::PARAM_STR);
+		$res1->bindValue('intitule',$intitule, PDO::PARAM_STR);
+		$res1->bindValue('debut',$debut, PDO::PARAM_STR);
+		$res1->bindValue('fin',$fin, PDO::PARAM_STR);
+		$res1->bindValue('prix',$prix, PDO::PARAM_STR);
+		$res1->bindValue('etat',$etat, PDO::PARAM_STR);
+		$res1->bindValue('domaine',$domaine, PDO::PARAM_STR);
+		$res1->execute();
+	}
+	/**
 	 * Supprimer un intervenant 
 	 *
 	 * Supprimer un intervenant à partir des arguments validés passés en paramètre
@@ -367,7 +390,17 @@ class PdoSteria
 			}
 		}
 	}
-
+	/**
+	 * Supprimer une intervention 
+	 *
+	 * Supprimer une intervention à partir des arguments validés passés en paramètre
+	*/
+	public function supprimerIntervention($num_intervention)
+	{
+		$resDel = PdoSteria::$monPdo->prepare('DELETE FROM intervention WHERE num_intervention = :num');
+		$resDel->bindValue('num',$num_intervention, PDO::PARAM_INT);
+		$resDel->execute();
+	}
 	
 }
 ?>

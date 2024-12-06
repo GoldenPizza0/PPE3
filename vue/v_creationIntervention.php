@@ -13,8 +13,19 @@
 		<form action="index.php?uc=intervention&action=confirmCreatIntervention" method="post">
 			<table>
 				<tbody>
-					<tr><td>No Contrat</td><td><input name="TNoC" size=5></td></tr>
-					<tr><td>Intitule </td><td><input name="TInt" size=5></td></tr>	
+					<tr>
+						<td>No Contrat</td>
+						<td>
+							<select id="contrat" name="TNoC">
+								<?php
+									$lesContrats = $pdo->getLescontrats();
+									foreach($lesContrats as $unContrat) : ?>
+									<option value="<?=$unContrat['No_contrat']; ?>"><?=$unContrat['No_contrat']; ?></option>
+								<?php endforeach ?>
+							</select>
+						</td>
+					</tr>
+					<tr><td>Intitule </td><td><input name="TInt" size=20></td></tr>	
 					<tr><td>Début</td><td><input type='date' name="TD" size=20></td></tr>	
 					<tr><td>Fin</td><td><input type='date' name="TF" size=20></td></tr>
 					<tr><td>Prix</td><td><input name="TP" size=15></td></tr>	
@@ -26,7 +37,7 @@
 								<?php
 									$lesDomaines = $pdo->getLesDomaines();
 									foreach($lesDomaines as $unDomaine) : ?>
-									<option value="<?=$unDomaine['code_domaine']; ?>"><?= $unDomaine['libelle']; ?></option>
+									<option value="<?=$unDomaine['code_domaine']; ?>"><?=$unDomaine['code_domaine']; ?> - <?= $unDomaine['libelle']; ?></option>
 								<?php endforeach ?>
 							</select>
 						</td>
