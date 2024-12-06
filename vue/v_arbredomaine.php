@@ -6,10 +6,12 @@ if (isset($arbres) && is_array($arbres)) {
     
     // Parcours des domaines
     foreach ($arbres as $domaine) {
-        echo "<li>";
-        echo "<strong>Famille :</strong> {$domaine['libelle_f']} (Code : {$domaine['id_f']})";
 
-        // Vérifie s'il existe une famille associée
+        echo "<li>";
+        if(isset($domaine['libelle_f'])){
+        echo "<strong>Famille :</strong> {$domaine['libelle_f']} (Code : {$domaine['id_f']})";
+        }
+        // Vérifie s'il existe un domaine associée
         if (!empty($domaine['code_domaine']) && !empty($domaine['libelle'])) {
             echo "<ul>";
             echo "<li><strong>Domaine :</strong> {$domaine['libelle']} (ID : {$domaine['code_domaine']})</li>";
