@@ -1,7 +1,6 @@
 
 <?php
 // $action :variable d'aiguillage
-echo 'action : ', $_GET["action"];
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 } 
@@ -14,7 +13,6 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/modele/bd.client.inc.php";
 include "vue/entete.php";
-echo $action;
 switch($action)
 {
     case 'voirTableauClientSite':
@@ -34,10 +32,10 @@ switch($action)
     }
     case 'SupprimerClient':
     {
-        $libelle = $_POST['idClient'];
-        echo $libelle;
+        echo "id : ".$_GET['id'];
+        $libelle = $_GET['id'];
         SuppClient($libelle);
-        include("vue/v_tableauAdminClient.php");
+        include("./?uc=client");
     }
     case 'SupprimerSite':
     {

@@ -13,7 +13,6 @@ tr:hover {
     background-color: #f5f5f5;
 }
 </style>
-<form method="POST" action="./?uc=client">
 <table >
 <tr style="background-color:#00ffff;">
     <th>societe</th>
@@ -30,7 +29,7 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><?php echo $UnClient["societe"];?></td>
                 <td><?php echo $UnClient["adresse"];?></td>
                 <td><?php echo $UnClient["activite"];?></td>
-                <td><a href="./controleur/c_controleurClients.php/?action=SupprimerClient"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>X</button></a></td>
+                <td><a href="./?uc=client&action=SupprimerClient&id=<?php echo $UnClient['code_client'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')">X</a></td>
                 <td><a href="./?uc=client&action=ModifierClient"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
                 <td><a href="./?uc=client"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
             </tr>
@@ -65,4 +64,3 @@ foreach($lesClientsEtSites as $UnClient){
 }
 ?>
 </table>
-</form>

@@ -63,9 +63,10 @@ function getLesClientsEtSites() {
 function SuppClient($idClient) {
     try {
         $cnx = connexionPDO();
-        $cnx->query("
+        $req = "
         Delete FROM site where code_client = ".$idClient.";
-        Delete FROM client where code_client = ".$idClient.";");
+        Delete FROM client where code_client = ".$idClient.";";
+        $cnx->exec($req);
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage();
         return false;

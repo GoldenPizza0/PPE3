@@ -10,7 +10,7 @@ if (isset($_GET["uc"])) {
 else {
     $uc = "defaut";
 }
-
 $fichier = controleurPrincipal($uc);
 include "$racine/controleur/$fichier";
+
 ?>
