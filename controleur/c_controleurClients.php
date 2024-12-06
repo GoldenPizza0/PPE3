@@ -36,47 +36,49 @@ switch($action)
         SuppClient($libelle);
         $message = "suppression faite";
         include ("vue/v_message.php");
+        break;
     }
     case 'SupprimerSite':
     {
         $id = $_GET['id'];
         $site = $_GET['site'];
         SuppSite($id,$site);
+        $message = "suppression faite";
         include ("vue/v_message.php");
+        break;
     }
     case 'ModifierClient' :
     {
         $libelle = $_POST['idClient'];
         include ("vue/v_message.php");
+        break;
     }
     case 'ModifierSite' :
     {
         $libelle = $_POST['idClient'];
         include ("vue/v_message.php");
+        break;
     }
-    // case 'Creer':
-    // {
-    //     $libelle = $_REQUEST['libelle'];
-    //     switch($libelle)
-    //     {
-    //         case 'Client':
-    //         {
-
-
-    //         }
-    //         case 'Site':
-    //         {
-
-
-    //         }
-    //         case 'Secteur':
-    //         {
-
-
-    //         }
-
-    //     }
-    // }
+    case 'CreerClient' :
+    {
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $adresse = $_POST['adresse'];
+            $client = $_POST['client'];
+            $act = $_POST['Secteur'];
+            CreationClient($adresse,$client,$act);
+            $message = "création faite";
+            include ("vue/v_message.php");
+            break;
+        }
+        include("vue/v_creationClient.php");
+    }
+    case 'CreerSite' :
+    {
+        
+        $libelle = $_POST['idClient'];
+        include ("vue/v_message.php");
+        break;
+    }
 }
 
 

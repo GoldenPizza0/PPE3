@@ -83,4 +83,16 @@ function SuppSite($idClient, $idSite) {
         return false;
     }
 }
+function getLesSecteurs(){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT id_act, libelle_act FROM secteur");
+    $lesLignes = $req->fetchAll();
+    return $lesLignes;
+}
+function CreationClient($adresse,$societe,$id_act){
+    $cnx = connexionPDO();
+    $req = $cnx->prepare("insert into client ( adresse , societe, id_act )
+    Values('$adresse','$societe',$id_act)");
+    $req->execute();
+}
 ?>

@@ -13,6 +13,9 @@ tr:hover {
     background-color: #f5f5f5;
 }
 </style>
+
+<a href="./?uc=client&action=CreerClient"><button >créer un client</button></a>
+
 <table >
 <tr style="background-color:#00ffff;">
     <th>societe</th>
@@ -21,6 +24,7 @@ tr:hover {
     <th>supprimer</th>
     <th>modifier</th>
     <th>afficher site</th>
+    <th>ajouter un site</th>
 </tr>
 <?php
 foreach($lesClientsEtSites as $UnClient){
@@ -29,9 +33,10 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><?php echo $UnClient["societe"];?></td>
                 <td><?php echo $UnClient["adresse"];?></td>
                 <td><?php echo $UnClient["activite"];?></td>
-                <td><a href="./?uc=client&action=SupprimerClient&id=<?php echo $UnClient['code_client'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')">X</a></td>
+                <td><a href="./?uc=client&action=SupprimerClient&id=<?php echo $UnClient['code_client'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')"><button>X</button></a></td>
                 <td><a href="./?uc=client&action=ModifierClient"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
                 <td><a href="./?uc=client&id=<?php echo $UnClient['code_client'];?>"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
+                <td><a href="./?uc=client&id=<?php echo $UnClient['code_client'];?>"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>nouveau site</button></a></td>
             </tr>
             <?php
             if ($_GET['id'] == $UnClient['code_client']){
