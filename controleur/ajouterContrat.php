@@ -2,6 +2,7 @@
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
+include_once "$racine/modele/bd.inc.php";
 include_once "$racine/modele/bd.contrat.inc.php";
 include_once "$racine/modele/bd.client.inc.php";
 include_once "$racine/modele/bd.commercial.php";
@@ -25,7 +26,7 @@ $menuBurger = [
 $action = $_GET['action'] ?? 'ajout';
 
 if ($action === "ajout" && $_SERVER["REQUEST_METHOD"] == "POST") {
-    $No_contrat = $_POST['No_contrat'];
+    $No_contrat = $_POST['contrat'];
     $nb_jour = $_POST['nb_jour'];
     $enveloppe = $_POST['enveloppe'];
     $signer = $_POST['signer'];
@@ -39,7 +40,8 @@ if ($action === "ajout" && $_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $result ? "Contrat ajouté avec succès." : "Erreur lors de l'ajout du contrat.";
 } elseif ($action === "modificationContrat") {
     // Code pour modification
-    $contrat = getContratByIdR($_GET['No_contrat']); // Récupération du contrat à modifier
+    $No_contrat = $_GET['No_contrat'];
+    $contrat = getContratByIdR($No_contrat); // Récupération du contrat à modifier
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mise à jour des données
         $id_Contrat = $_POST['id'];
@@ -52,6 +54,7 @@ if ($action === "ajout" && $_SERVER["REQUEST_METHOD"] == "POST") {
         $numsite= $_POST['num_site'];
         $result = updateContrat($id_Contrat, $nb_jour, $enveloppe, $signature, $salarie1, $salarie2,  $codeclient, $numsite); // Fonction de mise à jour
         $message = $result ? "Contrat modifié avec succès." : "Erreur lors de la modification.";
+        header("Location: ./?uc=accueil"); // Redirection après suppression
     }
     include "$racine/vue/entete.php";
     include "$racine/vue/v_modifContrat.php"; // Formulaire de modification

@@ -14,7 +14,7 @@
 		<?php
 			foreach($contrat as $unChamp){
 				$No_contrat = $unChamp['No_contrat'];
-				$nom = $unChamp['nb_jour'];
+				$nb_jour = $unChamp['nb_jour'];
 				$enveloppe = $unChamp['enveloppe'];
 				$signature = $unChamp['signer'];
 				$salarie1 = $unChamp['id_salarie'];
@@ -24,8 +24,8 @@
 			}
 		?>
 		<tbody>
-			<tr><td>Numéro du contrat sélectionné</td><td><?php echo $No_contrat; ?><input name="id" type="hidden" size=20 value = "<?php echo $id_Contrat; ?>"></td></tr>
-			<tr><td>Nombre de jours</td><td><input name="nb_jour" size=20 value = "<?php echo $nom; ?>"></td></tr>
+			<tr><td>Numéro du contrat sélectionné</td><td><?php echo $No_contrat; ?><input name="id" type="hidden" size=20 value = "<?php echo $No_contrat; ?>"></td></tr>
+			<tr><td>Nombre de jours</td><td><input name="nb_jour" size=20 value = "<?php echo $nb_jour; ?>"></td></tr>
 			<tr><td>Enveloppe </td><td><input name="enveloppe" size=20 value = "<?php echo $enveloppe; ?>"></td></tr>	
 			<tr><td>Signé le </td><td><input name="signer" type="date" size=10 value = "<?php echo $signature; ?>"></td></tr>	
 			<tr><td>Salarié 1</td><td><input name="id_salarie" size=10 value = "<?php echo $salarie1; ?>"></td></tr>

@@ -84,39 +84,67 @@ function ajouterContrat($No_contrat, $nb_jour, $enveloppe, $signer, $id_salarie,
     }
 }
 function updateContrat($id_Contrat, $nb_jour, $enveloppe, $signature1, $id_salarie, $id_salarie_1, $code_client, $num_site) {
-    global $pdo;
+    try {
+        // Connexion à la base de données
+        $cnx = connexionPDO();
 
-    $sql = "UPDATE contrat
-            SET nb_jour = :nb_jour, 
-                enveloppe = :enveloppe, 
-                signer = :signature1, 
-                id_salarie = :id_salarie, 
-                id_salarie_1 = :id_salarie_1, 
-                code_client = :code_client, 
-                num_site = :num_site 
-            WHERE No_contrat = :No_contrat";
+        // Requête SQL pour la mise à jour
+        $sql = "UPDATE contrat
+                SET nb_jour = :nb_jour, 
+                    enveloppe = :enveloppe, 
+                    signer = :signer, 
+                    id_salarie = :id_salarie, 
+                    id_salarie_1 = :id_salarie_1, 
+                    code_client = :code_client, 
+                    num_site = :num_site 
+                WHERE No_contrat = :No_contrat";
 
-    $stmt = $pdo->prepare($sql);
+        // Préparation de la requête
+        $stmt = $cnx->prepare($sql);
 
-    // Exécute la requête en associant les paramètres
-    return $stmt->execute([
-        'nb_jour' => $nb_jour,
-        'enveloppe' => $enveloppe,
-        'signer' => $signature1,
-        'id_salarie' => $id_salarie,
-        'id_salarie_1' => $id_salarie_1,
-        'code_client' => $code_client,
-        'num_site' => $num_site,
-        'No_contrat' => $id_Contrat
-    ]);
+        // Liaison des paramètres
+        $stmt->bindParam(':nb_jour', $nb_jour);
+        $stmt->bindParam(':enveloppe', $enveloppe);
+        $stmt->bindParam(':signer', $signature1);
+        $stmt->bindParam(':id_salarie', $id_salarie);
+        $stmt->bindParam(':id_salarie_1', $id_salarie_1);
+        $stmt->bindParam(':code_client', $code_client);
+        $stmt->bindParam(':num_site', $num_site);
+        $stmt->bindParam(':No_contrat', $id_Contrat);
+
+        // Exécution de la requête
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Enregistre l'erreur dans les logs et retourne false
+        error_log("Erreur lors de la mise à jour d'un contrat : " . $e->getMessage());
+        return false;
+    }
 }
+
 
 
 function deleteContrat($No_contrat) {
-    global $pdo;
-    $sql = "DELETE FROM contrats WHERE No_contrat = :No_contrat";
-    $stmt = $pdo->prepare($sql);
-    return $stmt->execute(['No_contrat' => $No_contrat]);
+    try {
+        // Connexion à la base de données
+        $cnx = connexionPDO();
+
+        // Requête SQL pour la suppression
+        $sql = "DELETE FROM contrat WHERE No_contrat = :No_contrat";
+
+        // Préparation de la requête
+        $stmt = $cnx->prepare($sql);
+
+        // Liaison du paramètre
+        $stmt->bindParam(':No_contrat', $No_contrat);
+
+        // Exécution de la requête
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Enregistre l'erreur dans les logs et retourne false
+        error_log("Erreur lors de la suppression d'un contrat : " . $e->getMessage());
+        return false;
+    }
 }
+
 
 ?>
