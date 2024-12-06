@@ -11,65 +11,66 @@
 	}
 
 	include "vue/entete.php";
-	include_once "$racine/modele/bd.intervention.inc.php";
-
+	
 	switch($action)
 	{
 		case 'voirInterventions':
 		{
-			$lesContrats = getLesContrats();
-			include("vue/v_contratInterventions.php");
+			$lesInterventions = $pdo->getLesInterventions();
+			include("vue/v_interventions.php");
 		break;
 		}
 
-		/*
-		case 'creationIntervenant':
+		case 'creationIntervention':
 		{
-			include("vue/v_creationIntervenant.php");
+			include("vue/v_creationIntervention.php");
 			break;
 		}
-		case 'confirmCreatIntervenant':
+		case 'confirmCreatIntervention':
 		{
-			$nom = $_REQUEST['TNom'];
-			$prenom = $_REQUEST['TPrenom'];
-			$niveauEtudes = $_REQUEST['TNE'];
-			$maitreAnglais = $_REQUEST['TMA'];
-			$pdo->creerIntervenant($nom,$prenom,$niveauEtudes,$maitreAnglais);
+			$noC = $_REQUEST['TNoC'];
+			$intitule = $_REQUEST['TInt'];
+			$debut = $_REQUEST['TD'];
+			$fin = $_REQUEST['TF'];
+			$prix = $_REQUEST['TP'];
+			$etat = $_REQUEST['TE'];
+			$domaine = $_REQUEST['TDomaine'];
+			$pdo->creerIntervention($noC,$intitule,$debut,$fin,$prix,$etat,$domaine);
 			
-			include("vue/v_intervenants_redirection.php");	
+			include("vue/v_interventions_redirection.php");	
 			break;
 		}
 		
-		case 'modificationIntervenant':
+		case 'modificationIntervention':
 		{
-			include("vue/v_modificationIntervenant.php");
+			include("vue/v_modificationIntervention.php");
 			break;
 		}
-		case 'confirmModifIntervenant':
+		case 'confirmModifIntervention':
 		{
 			$id_Intervenant = $_REQUEST['TId'];
 			$nom = $_REQUEST['TNom'];
 			$prenom = $_REQUEST['TPrenom'];
 			$niveauEtudes = $_REQUEST['TNE'];
 			$maitreAnglais = $_REQUEST['TMA'];
-			$pdo->modifierIntervenant($id_Intervenant,$nom,$prenom,$niveauEtudes,$maitreAnglais);
+			$pdo->modifierIntervention($id_Intervenant,$nom,$prenom,$niveauEtudes,$maitreAnglais);
 			
-			include("vue/v_intervenants_redirection.php");	
+			include("vue/v_interventions_redirection.php");	
 			break;
 		}
 
-		case 'suppressionIntervenant':
+		case 'suppressionIntervention':
 		{
-			include("vue/v_suppressionIntervenant.php");
+			include("vue/v_suppressionIntervention.php");
 			break;
 		}
-		case 'confirmSuppIntervenant':
+		case 'confirmSuppIntervention':
 		{
-			$id_Intervenant = $_REQUEST['TId'];
-			$pdo->supprimerIntervenant($id_Intervenant);
+			$num_Intervention = $_REQUEST['TNum'];
+			$pdo->supprimerIntervention($num_Intervention);
 			
-			include("vue/v_intervenants_redirection.php");	
+			include("vue/v_interventions_redirection.php");	
 			break;
-		}*/
+		}
 	}
 ?>

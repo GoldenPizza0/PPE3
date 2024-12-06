@@ -1,3 +1,3 @@
 <?php
-header('Location: index.php?uc=gererCommercial&action=voirCommerciaux');
+header('Location: index.php?uc=commercial&action=voirCommerciaux');
 ?>

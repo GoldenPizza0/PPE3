@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <title><?php echo $titre ?></title>
+        <title>ESN STERIA</title>
         <style type="text/css">
             @import url("css/styles.css");
         </style>
@@ -19,7 +19,8 @@
             <li><a href="./?uc=salarie">Salarié</a></li>
             <li><a href="./?uc=intervenant">Intervenant</a></li>
             <li><a href="./?uc=commercial">Commercial</a></li>
-            <li><a href="./?uc=secteur">Secteur</a></li> 
+            <li><a href="./?uc=secteur">Secteur</a></li>
+            <li><a href="./?uc=intervention">Intervention</a></li> 
 
             
             <li></li> 

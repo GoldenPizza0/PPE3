@@ -11,7 +11,7 @@
  *
  */
 
-class PdoEsteria
+class PdoSteria
 {   		
 	private static $serveur='mysql:host=localhost';
 	private static $bdd='dbname=esn_steria';   		
@@ -25,11 +25,11 @@ class PdoEsteria
 	 */				
 	private function __construct()
 	{
-		PdoEsteria::$monPdo = new PDO(PdoEsteria::$serveur.';'.PdoEsteria::$bdd, PdoEsteria::$user, PdoEsteria::$mdp); 
-		PdoEsteria::$monPdo->query("SET CHARACTER SET utf8");
+		PdoSteria::$monPdo = new PDO(PdoSteria::$serveur.';'.PdoSteria::$bdd, PdoSteria::$user, PdoSteria::$mdp); 
+		PdoSteria::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
-		PdoEsteria::$monPdo = null;
+		PdoSteria::$monPdo = null;
 	}
 	/**
 	 * Fonction statique qui crée l'unique instance de la classe
@@ -40,11 +40,11 @@ class PdoEsteria
 	*/
 	public  static function getPdoEsteria()
 	{
-		if(PdoEsteria::$monPdoEsteria == null)
+		if(PdoSteria::$monPdoEsteria == null)
 		{
-			PdoEsteria::$monPdoEsteria= new PdoEsteria();
+			PdoSteria::$monPdoEsteria= new PdoSteria();
 		}
-		return PdoEsteria::$monPdoEsteria;  
+		return PdoSteria::$monPdoEsteria;  
 	}
 	/**
 	 * Retourne tous les Intervenants sous forme d'un tableau associatif
@@ -54,7 +54,7 @@ class PdoEsteria
 	public function getLesIntervenants()
 	{
 		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -66,7 +66,7 @@ class PdoEsteria
 	public function getLesCommerciaux()
 	{
 		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -78,10 +78,36 @@ class PdoEsteria
 	public function getLesSecteurs()
 	{
 		$req = "select * from secteur";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
+	/**
+	 * Retourne les Interventions sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif des interventions
+	*/
+	function getLesInterventions()
+	{
+        $pdo = connexionPDO();
+        $req = "select * from intervention order by No_contrat";
+        $res = $pdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+	/**
+	 * Retourne les Domaines sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif des domaines
+	*/
+	function getLesDomaines()
+	{
+        $pdo = connexionPDO();
+        $req = "select code_domaine, libelle from domaine";
+        $res = $pdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
 	/**
 	 * Retourne un Intervenant sous forme d'un tableau associatif
 	 *
@@ -90,7 +116,7 @@ class PdoEsteria
 	public function getUnIntervenant($id_Intervenant)
 	{
 		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie where salarie.id_salarie = $id_Intervenant";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -102,7 +128,7 @@ class PdoEsteria
 	public function getUnCommercial($id_Commercial)
 	{
 		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie where salarie.id_salarie = $id_Commercial";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -114,7 +140,31 @@ class PdoEsteria
 	public function getUnSecteur($id_secteur)
 	{
 		$req = "select * from secteur where id_act = $id_secteur";
-		$res = PdoEsteria::$monPdo->query($req);
+		$res = PdoSteria::$monPdo->query($req);
+		$laLigne = $res->fetchAll();
+		return $laLigne;
+	}
+	/**
+	 * Retourne une Intervention sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif d'une intervention
+	*/
+	public function getUneIntervention($num_Intervention)
+	{
+		$req = "select * from intervention where num_intervention = $num_Intervention";
+		$res = PdoSteria::$monPdo->query($req);
+		$laLigne = $res->fetchAll();
+		return $laLigne;
+	}
+	/**
+	 * Retourne un Domaine sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif de un domaine
+	*/
+	public function getUnDomaine($code_domaine)
+	{
+		$req = "select * from domaine where code_domaine = $code_domaine";
+		$res = PdoSteria::$monPdo->query($req);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -125,18 +175,18 @@ class PdoEsteria
 	*/
 	public function creerIntervenant($nom,$prenom,$NE,$MA)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
+		$res1 = PdoSteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
 			prenom_salarie) VALUES( :nom, 
 			:prenom)');
 		$res1->bindValue('nom',$nom, PDO::PARAM_STR);
 		$res1->bindValue('prenom', $prenom, PDO::PARAM_STR);
 		$res1->execute();
 
-		$id_salarie = PdoEsteria::$monPdo->query('SELECT MAX(id_salarie) AS max_id FROM salarie');
+		$id_salarie = PdoSteria::$monPdo->query('SELECT MAX(id_salarie) AS max_id FROM salarie');
 		$num_id_salarie = $id_salarie->fetch(PDO::FETCH_ASSOC);
 		$max_id = $num_id_salarie['max_id'];
 		
-		$res2 = PdoEsteria::$monPdo->prepare('INSERT INTO intervenant (id_salarie, niveau_etude, 
+		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO intervenant (id_salarie, niveau_etude, 
 			maitrise_an) VALUES( :id, :NE, 
 			:MA)');
 		$res2->bindValue('id', $max_id, PDO::PARAM_INT);
@@ -151,18 +201,18 @@ class PdoEsteria
 	*/
 	public function creerCommercial($nom,$prenom,$portable,$fixe,$secteur)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
+		$res1 = PdoSteria::$monPdo->prepare('INSERT INTO salarie (nom_salarie, 
 			prenom_salarie) VALUES( :nom, 
 			:prenom)');
 		$res1->bindValue('nom',$nom, PDO::PARAM_STR);
 		$res1->bindValue('prenom', $prenom, PDO::PARAM_STR);
 		$res1->execute();
 
-		$id_salarie = PdoEsteria::$monPdo->query('SELECT MAX(id_salarie) AS max_id FROM salarie');
+		$id_salarie = PdoSteria::$monPdo->query('SELECT MAX(id_salarie) AS max_id FROM salarie');
 		$num_id_salarie = $id_salarie->fetch(PDO::FETCH_ASSOC);
 		$max_id = $num_id_salarie['max_id'];
 		
-		$res2 = PdoEsteria::$monPdo->prepare('INSERT INTO commercial (id_salarie, portable, 
+		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO commercial (id_salarie, portable, 
 			fixe, id_act) VALUES( :id, :portable, :fixe, :secteur)');
 		$res2->bindValue('id', $max_id, PDO::PARAM_INT);
 		$res2->bindValue('portable',$portable, PDO::PARAM_STR);
@@ -177,9 +227,31 @@ class PdoEsteria
 	*/
 	public function creerSecteur($libelle)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('INSERT INTO secteur (libelle_act) VALUES( :libelle)');
+		$res1 = PdoSteria::$monPdo->prepare('INSERT INTO secteur (libelle_act) VALUES( :libelle)');
 		$res1->bindValue('libelle',$libelle, PDO::PARAM_STR);
 		$res1->execute();
+	}
+	/**
+	 * Créer une intervention
+	 *
+	 * Créer une intervention à partir des arguments validés passés en paramètre
+	*/
+	public function creerIntervention($noC, $intitule, $debut, $fin, $prix, $etat, $domaine)
+	{ 
+		$res1 = PdoSteria::$monPdo->query("SELECT MAX(num_intervention)+1 as num FROM intervention WHERE No_contrat = '$noC'");
+		(int)$num_intervention = $res1->fetchColumn();
+		echo $num_intervention;
+		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO intervention (No_contrat, num_intervention, intitule, debut, fin, prix, 
+		etat, code_domaine) VALUES( :noC, :numI, :intitule, :debut, :fin, :prix, :etat, :domaine)');
+		$res2->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res2->bindValue('numI',$num_intervention, PDO::PARAM_STR);
+		$res2->bindValue('intitule',$intitule, PDO::PARAM_STR);
+		$res2->bindValue('debut',$debut, PDO::PARAM_STR);
+		$res2->bindValue('fin',$fin, PDO::PARAM_STR);
+		$res2->bindValue('prix',$prix, PDO::PARAM_STR);
+		$res2->bindValue('etat',$etat, PDO::PARAM_STR);
+		$res2->bindValue('domaine',$domaine, PDO::PARAM_STR);
+		$res2->execute();
 	}
 	/**
 	 * Modifier un intervenant 
@@ -188,14 +260,14 @@ class PdoEsteria
 	*/
 	public function modifierIntervenant($id_salarie,$nom,$prenom,$NE,$MA)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('UPDATE salarie SET nom_salarie = :nom,
+		$res1 = PdoSteria::$monPdo->prepare('UPDATE salarie SET nom_salarie = :nom,
 			prenom_salarie = :prenom WHERE id_salarie = :id');
 		$res1->bindValue('id',$id_salarie, PDO::PARAM_INT);
 		$res1->bindValue('nom',$nom, PDO::PARAM_STR);
 		$res1->bindValue('prenom', $prenom, PDO::PARAM_STR);
 		$res1->execute();
 		
-		$res2 = PdoEsteria::$monPdo->prepare('UPDATE intervenant SET niveau_etude = :NE, 
+		$res2 = PdoSteria::$monPdo->prepare('UPDATE intervenant SET niveau_etude = :NE, 
 			maitrise_an = :MA WHERE id_salarie = :id');
 		$res2->bindValue('id', $id_salarie, PDO::PARAM_INT);
 		$res2->bindValue('NE',$NE, PDO::PARAM_STR);
@@ -209,14 +281,14 @@ class PdoEsteria
 	*/
 	public function modifierCommercial($id_salarie,$nom,$prenom,$portable,$fixe,$secteur)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('UPDATE salarie SET nom_salarie = :nom,
+		$res1 = PdoSteria::$monPdo->prepare('UPDATE salarie SET nom_salarie = :nom,
 			prenom_salarie = :prenom WHERE id_salarie = :id');
 		$res1->bindValue('id',$id_salarie, PDO::PARAM_INT);
 		$res1->bindValue('nom',$nom, PDO::PARAM_STR);
 		$res1->bindValue('prenom', $prenom, PDO::PARAM_STR);
 		$res1->execute();
 		
-		$res2 = PdoEsteria::$monPdo->prepare('UPDATE commercial SET portable = :portable, 
+		$res2 = PdoSteria::$monPdo->prepare('UPDATE commercial SET portable = :portable, 
 			fixe = :fixe, id_act = :secteur WHERE id_salarie = :id');
 		$res2->bindValue('id', $id_salarie, PDO::PARAM_INT);
 		$res2->bindValue('portable',$portable, PDO::PARAM_STR);
@@ -231,7 +303,7 @@ class PdoEsteria
 	*/
 	public function modifierSecteur($id_secteur,$libelle)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('UPDATE secteur SET libelle_act = :libelle WHERE id_act = :id');
+		$res1 = PdoSteria::$monPdo->prepare('UPDATE secteur SET libelle_act = :libelle WHERE id_act = :id');
 		$res1->bindValue('id',$id_secteur, PDO::PARAM_INT);
 		$res1->bindValue('libelle',$libelle, PDO::PARAM_STR);
 		$res1->execute();
@@ -243,11 +315,11 @@ class PdoEsteria
 	*/
 	public function supprimerIntervenant($id_salarie)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('DELETE FROM intervenant WHERE id_salarie = :id');
+		$res1 = PdoSteria::$monPdo->prepare('DELETE FROM intervenant WHERE id_salarie = :id');
 		$res1->bindValue('id',$id_salarie, PDO::PARAM_INT);
 		$res1->execute();
 		
-		$res2 = PdoEsteria::$monPdo->prepare('DELETE FROM salarie WHERE id_salarie = :id');
+		$res2 = PdoSteria::$monPdo->prepare('DELETE FROM salarie WHERE id_salarie = :id');
 		$res2->bindValue('id', $id_salarie, PDO::PARAM_INT);
 		$res2->execute();
 	}
@@ -258,11 +330,11 @@ class PdoEsteria
 	*/
 	public function supprimerCommercial($id_salarie)
 	{
-		$res1 = PdoEsteria::$monPdo->prepare('DELETE FROM commercial WHERE id_salarie = :id');
+		$res1 = PdoSteria::$monPdo->prepare('DELETE FROM commercial WHERE id_salarie = :id');
 		$res1->bindValue('id',$id_salarie, PDO::PARAM_INT);
 		$res1->execute();
 		
-		$res2 = PdoEsteria::$monPdo->prepare('DELETE FROM salarie WHERE id_salarie = :id');
+		$res2 = PdoSteria::$monPdo->prepare('DELETE FROM salarie WHERE id_salarie = :id');
 		$res2->bindValue('id', $id_salarie, PDO::PARAM_INT);
 		$res2->execute();
 	}
@@ -273,10 +345,10 @@ class PdoEsteria
 	*/
 	public function supprimerSecteur($id_secteur)
 	{
-		$reqClients = PdoEsteria::$monPdo->query("SELECT COUNT(*) FROM client WHERE id_act = '$id_secteur'");
+		$reqClients = PdoSteria::$monPdo->query("SELECT COUNT(*) FROM client WHERE id_act = '$id_secteur'");
 		$nb_clients = $reqClients->fetchColumn();
 
-		$reqCommerciaux = PdoEsteria::$monPdo->query("SELECT COUNT(*) FROM commercial WHERE id_act = '$id_secteur'");
+		$reqCommerciaux = PdoSteria::$monPdo->query("SELECT COUNT(*) FROM commercial WHERE id_act = '$id_secteur'");
 		$nb_commerciaux = $reqCommerciaux->fetchColumn();
 
 		if ($nb_clients > 0) {
@@ -286,7 +358,7 @@ class PdoEsteria
 			echo "Il faut d'abord supprimer le(s) commercial(aux) associé(s) à ce secteur ! (secteur = '$id_secteur')";
 		} 
 		else {
-			$reqDelete = PdoEsteria::$monPdo->prepare('DELETE FROM secteur WHERE id_act = :id_secteur');
+			$reqDelete = PdoSteria::$monPdo->prepare('DELETE FROM secteur WHERE id_act = :id_secteur');
 			$reqDelete->bindValue('id_secteur', $id_secteur, PDO::PARAM_INT);
 			if ($reqDelete->execute()) {
 				echo "Secteur supprimé avec succès.";
@@ -295,5 +367,7 @@ class PdoEsteria
 			}
 		}
 	}
+
+	
 }
 ?>

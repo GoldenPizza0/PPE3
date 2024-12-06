@@ -9,7 +9,7 @@
 	
    <body>
    <p><h1>Modification Intervenant :</h1></p><BR/>
-	<form action="index.php?uc=gererIntervenant&action=confirmModifIntervenant" method="post">
+	<form action="index.php?uc=intervenant&action=confirmModifIntervenant" method="post">
 		<table>
 		<?php
 			$lIntervenant = $pdo->getUnIntervenant($_REQUEST['id']);
