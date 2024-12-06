@@ -32,19 +32,16 @@ switch($action)
     }
     case 'SupprimerClient':
     {
-        echo "id : ".$_GET['id'];
         $libelle = $_GET['id'];
         SuppClient($libelle);
-        include("./?uc=client");
+        $message = "suppression faite";
+        include ("vue/v_message.php");
     }
     case 'SupprimerSite':
     {
-        $libelle = $_POST['idClient'];
-        include ("vue/v_message.php");
-    }
-    case 'SupprimerSecteur':
-    {
-        $libelle = $_POST['idClient'];
+        $id = $_GET['id'];
+        $site = $_GET['site'];
+        SuppSite($id,$site);
         include ("vue/v_message.php");
     }
     case 'ModifierClient' :
@@ -53,11 +50,6 @@ switch($action)
         include ("vue/v_message.php");
     }
     case 'ModifierSite' :
-    {
-        $libelle = $_POST['idClient'];
-        include ("vue/v_message.php");
-    }
-    case 'ModifierSecteur' :
     {
         $libelle = $_POST['idClient'];
         include ("vue/v_message.php");

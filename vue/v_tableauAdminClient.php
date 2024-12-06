@@ -31,10 +31,10 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><?php echo $UnClient["activite"];?></td>
                 <td><a href="./?uc=client&action=SupprimerClient&id=<?php echo $UnClient['code_client'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')">X</a></td>
                 <td><a href="./?uc=client&action=ModifierClient"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
-                <td><a href="./?uc=client"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
+                <td><a href="./?uc=client&id=<?php echo $UnClient['code_client'];?>"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
             </tr>
             <?php
-            if ($_POST['idClient'] == $UnClient['code_client']){
+            if ($_GET['id'] == $UnClient['code_client']){
             ?>
                     <tr style="background-color:#00ffcc;">
                         <th>sites</th>
@@ -50,7 +50,7 @@ foreach($lesClientsEtSites as $UnClient){
                             <td><?php echo $UnSite["nom_site"];?></td>
                             <td><?php echo $UnSite["adresse_site"];?></td>
                             <td><?php echo $UnSite["referent"];?></td>
-                            <td><a href="./?uc=client&action=SupprimerSite"><button name="idSite" value= <?php $retour = array($UnClient['code_client'], $UnSite["num_site"]);echo $retour ;?>>X</button></a></td>
+                            <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>">X</a></td>
                             <td><a href="./?uc=client&action=ModifierSite"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
                         </tr>
                     <?php

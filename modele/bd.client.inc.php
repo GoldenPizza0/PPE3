@@ -72,4 +72,15 @@ function SuppClient($idClient) {
         return false;
     }
 }
+function SuppSite($idClient, $idSite) {
+    try {
+        $cnx = connexionPDO();
+        $req = "
+        Delete FROM site where num_site = ".$idSite." and code_client = ".$idClient.";";
+        $cnx->exec($req);
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
 ?>
