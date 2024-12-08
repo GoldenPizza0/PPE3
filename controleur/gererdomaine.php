@@ -17,12 +17,13 @@ $action = $_GET['action'] ?? 'default';
 
 // Récupération des données pour l'arbre
 if ($action === 'default') {
+    $arbreHierarchie = getArbreDomaineHierarchie();
     $nbbranch = getnbbranchfamily();
     $titre = "Domaine Technique";
     include "$racine/vue/entete.php";
     include "$racine/vue/v_arbredomaine.php";
     include "$racine/vue/pied.php";
-} elseif ($action === 'ajoutBranche') {
+}elseif ($action === 'ajoutBranche') {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         $libelle = $_POST['libelle'] ?? null;
