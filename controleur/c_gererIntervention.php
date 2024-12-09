@@ -77,6 +77,8 @@
 		case 'confirmSuppIntervention':
 		{
 			$num_Intervention = $_REQUEST['TNum'];
+			$noC = $_REQUEST['TNoC'];
+			$pdo->supprimerAffecte($num_Intervention, $noC);
 			$pdo->supprimerIntervention($num_Intervention);
 			
 			include("vue/v_interventions_redirection.php");	

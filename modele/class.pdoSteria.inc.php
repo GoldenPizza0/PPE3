@@ -446,6 +446,17 @@ class PdoSteria
 		$resDel->bindValue('num',$num_intervention, PDO::PARAM_INT);
 		$resDel->execute();
 	}
-	
+	/**
+	 * Supprimer une affectation 
+	 *
+	 * Supprimer une affectation à partir des arguments validés passés en paramètre
+	*/
+	public function supprimerAffecte($num_intervention, $noC)
+	{
+		$resDel = PdoSteria::$monPdo->prepare('DELETE FROM affecte WHERE num_intervention = :num AND No_contrat = :noc');
+		$resDel->bindValue('num',$num_intervention, PDO::PARAM_INT);
+		$resDel->bindValue('noc',$noC, PDO::PARAM_INT);
+		$resDel->execute();
+	}
 }
 ?>
