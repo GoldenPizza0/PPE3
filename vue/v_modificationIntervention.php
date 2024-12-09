@@ -23,6 +23,11 @@
 					$etat = $unChamp['etat'];
 					$domaine = $unChamp['code_domaine'];
 				}
+				$laffecte = $pdo->getUneAffecte($num_intervention, $noC);
+				foreach($laffecte as $unChamp){
+					$salarie = $unChamp['id_salarie'];
+					$duree = $unChamp['duree'];
+				}
 			?>
 			<tbody>
 				<input type=hidden name="TNum" value = "<?php echo $num_intervention; ?>">
@@ -54,7 +59,20 @@
 							<?php endforeach ?>
 						</select>
 					</td>
-				</tr>	
+				</tr>
+				<tr>
+					<td>Intervenant</td>
+						<td>
+							<select id="intervenant" name="TIntervenant">
+								<?php
+									$lesIntervenants = $pdo->getLesIntervenants();
+									foreach($lesIntervenants as $unIntervenant) : ?>
+									<option value="<?=$unIntervenant['id_salarie']; ?>"><?=$unIntervenant['nom_salarie']; ?> - <?= $unIntervenant['prenom_salarie']; ?></option>
+								<?php endforeach ?>
+							</select>
+						</td>
+					</tr>
+					<tr><td>Durée</td><td><input type="date" name="TDuree" size=20></td></tr>
 			</tbody>
 		</table>
 		

@@ -36,7 +36,10 @@
 			$prix = $_REQUEST['TP'];
 			$etat = $_REQUEST['TE'];
 			$domaine = $_REQUEST['TDomaine'];
+			$intervenant = $_REQUEST['TIntervenant'];
+			$duree = $_REQUEST['TDuree'];
 			$pdo->creerIntervention($noC,$intitule,$debut,$fin,$prix,$etat,$domaine);
+			$pdo->creerAffecte($noC,$intervenant,$duree);
 			
 			include("vue/v_interventions_redirection.php");	
 			break;
@@ -57,7 +60,10 @@
 			$prix = $_REQUEST['TP'];
 			$etat = $_REQUEST['TE'];
 			$domaine = $_REQUEST['TDomaine'];
+			$intervenant = $_REQUEST['TIntervenant'];
+			$duree = $_REQUEST['TDuree'];
 			$pdo->modifierIntervention($noC,$numI,$intitule,$debut,$fin,$prix,$etat,$domaine);
+			$pdo->modifierAffecte($noC,$numI,$intervenant,$duree);
 			
 			include("vue/v_interventions_redirection.php");	
 			break;

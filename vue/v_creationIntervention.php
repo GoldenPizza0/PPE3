@@ -42,6 +42,19 @@
 							</select>
 						</td>
 					</tr>
+					<tr>
+						<td>Intervenant</td>
+						<td>
+							<select id="intervenant" name="TIntervenant">
+								<?php
+									$lesIntervenants = $pdo->getLesIntervenants();
+									foreach($lesIntervenants as $unIntervenant) : ?>
+									<option value="<?=$unIntervenant['id_salarie']; ?>"><?=$unIntervenant['nom_salarie']; ?> - <?= $unIntervenant['prenom_salarie']; ?></option>
+								<?php endforeach ?>
+							</select>
+						</td>
+					</tr>
+					<tr><td>Durée</td><td><input type="date" name="TDuree" size=20></td></tr>
 				</tbody>
 			</table>
 			

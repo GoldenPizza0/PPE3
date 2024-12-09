@@ -162,9 +162,21 @@ class PdoSteria
 	 *
 	 * @return le tableau associatif d'une intervention
 	*/
-	public function getUneIntervention($num_Intervention)
+	public function getUneIntervention($num_intervention)
 	{
-		$req = "select * from intervention where num_intervention = $num_Intervention";
+		$req = "select * from intervention where num_intervention = $num_intervention";
+		$res = PdoSteria::$monPdo->query($req);
+		$laLigne = $res->fetchAll();
+		return $laLigne;
+	}
+	/**
+	 * Retourne une affectation sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif d'une affectation
+	*/
+	public function getUneAffecte($num_intervention, $noC)
+	{
+		$req = "select * from affecte where num_intervention = $num_intervention and No_contrat = $noC";
 		$res = PdoSteria::$monPdo->query($req);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
@@ -257,6 +269,24 @@ class PdoSteria
 		$res2->execute();
 	}
 	/**
+	 * Créer une affectation
+	 *
+	 * Créer une affectation à partir des arguments validés passés en paramètre
+	*/
+	public function creerAffecte($noC, $intervenant, $duree)
+	{ 
+		$res1 = PdoSteria::$monPdo->query("SELECT MAX(num_intervention) as num FROM intervention WHERE No_contrat = '$noC'");
+		(int)$num_intervention = $res1->fetchColumn();
+
+		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO affecte (No_contrat, num_intervention, id_salarie, duree) 
+		VALUES( :noC, :numI, :salarie, :duree)');
+		$res2->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res2->bindValue('numI',$num_intervention, PDO::PARAM_STR);
+		$res2->bindValue('salarie',$intervenant, PDO::PARAM_STR);
+		$res2->bindValue('duree',$duree, PDO::PARAM_STR);
+		$res2->execute();
+	}
+	/**
 	 * Modifier un intervenant 
 	 *
 	 * Modifier un intervenant à partir des arguments validés passés en paramètre
@@ -329,6 +359,21 @@ class PdoSteria
 		$res1->bindValue('prix',$prix, PDO::PARAM_STR);
 		$res1->bindValue('etat',$etat, PDO::PARAM_STR);
 		$res1->bindValue('domaine',$domaine, PDO::PARAM_STR);
+		$res1->execute();
+	}
+	/**
+	 * Modifier une affectation
+	 *
+	 * Modifier une affectation à partir des arguments validés passés en paramètre
+	*/
+	public function modifierAffecte($noC, $num, $salarie, $duree)
+	{
+		$res1 = PdoSteria::$monPdo->prepare('UPDATE affecte SET No_contrat = :noC,
+			id_salarie = :salarie, duree = :duree WHERE num_intervention = :num');
+		$res1->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res1->bindValue('num',$num, PDO::PARAM_STR);
+		$res1->bindValue('salarie',$salarie, PDO::PARAM_STR);
+		$res1->bindValue('duree',$duree, PDO::PARAM_STR);
 		$res1->execute();
 	}
 	/**
