@@ -1,3 +1,3 @@
 <?php
-header('Location: index.php?uc=creerIntervenant&action=voirIntervenants');
+header('Location: index.php?uc=intervenant&action=voirIntervenants');
 ?>

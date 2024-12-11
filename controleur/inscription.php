@@ -5,19 +5,23 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/modele/bd.utilisateur.inc.php";
 
+// creation du menu burger
+$menuBurger = array();
+$menuBurger[] = Array("url"=>"./?uc=connexion","label"=>"Connexion");
+$menuBurger[] = Array("url"=>"./?uc=inscription","label"=>"Inscription");
+
 
 $inscrit = false;
 $msg="";
 // recuperation des donnees GET, POST, et SESSION
-if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"])) {
+if (isset($_POST["username"]) && isset($_POST["mdp"])) {
 
-    if ($_POST["mailU"] != "" && $_POST["mdpU"] != "" && $_POST["pseudoU"] != "") {
-        $mailU = $_POST["mailU"];
-        $mdpU = $_POST["mdpU"];
-        $pseudoU = $_POST["pseudoU"];
+    if ($_POST["username"] != "" && $_POST["mdpU"] != "" ) {
+        $username = $_POST["username"];
+        $mdp = $_POST["mdp"];
 
         // enregistrement des donnees
-        $ret = addUtilisateur($mailU, $mdpU, $pseudoU);
+        $ret = addUtilisateur($username, $mdp);
         if ($ret) {
             $inscrit = true;
         } else {

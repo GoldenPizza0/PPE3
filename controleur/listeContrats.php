@@ -1,23 +1,39 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+// Vérification du fichier en cours d'exécution
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";  // Définir la racine du projet
 }
+
+// Inclusion du fichier pour la gestion des contrats
 include_once "$racine/modele/bd.contrat.inc.php";
 
-// recuperation des donnees GET, POST, et SESSION
-;
+// Définition du menu burger
+$menuBurger = array();
+$menuBurger[] = array("url" => "./?uc=accueil", "label" => "Liste Contrat");
+$menuBurger[] = array("url" => "./?uc=GererContrat", "label" => "Ajout Contrat");
 
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
-$listeContrats = getContrat();
 
-// traitement si necessaire des donnees recuperees
-;
 
-// appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "Liste des restaurants répertoriés";
-include "$racine/vue/entete.php";
-include "$racine/vue/v_listeContrats.php";
-include "$racine/vue/pied.php";
+if(getcontrat()!=false){
+$listeContrats = getContrat(); 
+}
+
+
+$titre = "Liste des contrats répertoriés";
+
+
+
+if (isset($uc) && $uc == "GererContrat") {
+    include "$racine/controleur/ajouterContrat.php"; 
+}else {
+    include "$racine/vue/entete.php";
+    include "$racine/vue/v_listeContrats.php";
+    include "$racine/vue/pied.php";
+}
+
+
+
+
 
 
 ?>
