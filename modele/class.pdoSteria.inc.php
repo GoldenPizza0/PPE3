@@ -53,8 +53,8 @@ class PdoSteria
 	*/
 	public function getLesIntervenants()
 	{
-		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie";
+		$res = PdoSteria::$monPdo->query($res);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -65,8 +65,8 @@ class PdoSteria
 	*/
 	public function getLesCommerciaux()
 	{
-		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie";
+		$res = PdoSteria::$monPdo->query($res);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -77,8 +77,8 @@ class PdoSteria
 	*/
 	public function getLesSecteurs()
 	{
-		$req = "select * from secteur";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select * from secteur";
+		$res = PdoSteria::$monPdo->query($res);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -90,8 +90,8 @@ class PdoSteria
 	function getLesInterventions()
 	{
         $pdo = connexionPDO();
-        $req = "select * from intervention order by No_contrat";
-        $res = $pdo->query($req);
+        $res = "select * from intervention order by No_contrat";
+        $res = $pdo->query($res);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
@@ -103,8 +103,8 @@ class PdoSteria
 	function getLesDomaines()
 	{
         $pdo = connexionPDO();
-        $req = "select code_domaine, libelle from domaine";
-        $res = $pdo->query($req);
+        $res = "select code_domaine, libelle from domaine";
+        $res = $pdo->query($res);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
@@ -116,8 +116,8 @@ class PdoSteria
 	function getLesContrats()
 	{
         $pdo = connexionPDO();
-        $req = "select No_contrat from contrat";
-        $res = $pdo->query($req);
+        $res = "select No_contrat from contrat";
+        $res = $pdo->query($res);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
@@ -128,8 +128,8 @@ class PdoSteria
 	*/
 	public function getUnIntervenant($id_Intervenant)
 	{
-		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie where salarie.id_salarie = $id_Intervenant";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select salarie.id_salarie, nom_salarie, prenom_salarie, niveau_etude, maitrise_an from salarie inner join intervenant on salarie.id_salarie = intervenant.id_salarie where salarie.id_salarie = $id_Intervenant";
+		$res = PdoSteria::$monPdo->query($res);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -140,8 +140,8 @@ class PdoSteria
 	*/
 	public function getUnCommercial($id_Commercial)
 	{
-		$req = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie where salarie.id_salarie = $id_Commercial";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select salarie.id_salarie, nom_salarie, prenom_salarie, portable, fixe, id_act from salarie inner join commercial on salarie.id_salarie = commercial.id_salarie where salarie.id_salarie = $id_Commercial";
+		$res = PdoSteria::$monPdo->query($res);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -152,8 +152,8 @@ class PdoSteria
 	*/
 	public function getUnSecteur($id_secteur)
 	{
-		$req = "select * from secteur where id_act = $id_secteur";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select * from secteur where id_act = $id_secteur";
+		$res = PdoSteria::$monPdo->query($res);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -164,8 +164,8 @@ class PdoSteria
 	*/
 	public function getUneIntervention($num_intervention)
 	{
-		$req = "select * from intervention where num_intervention = $num_intervention";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select * from intervention where num_intervention = $num_intervention";
+		$res = PdoSteria::$monPdo->query($res);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -176,8 +176,20 @@ class PdoSteria
 	*/
 	public function getUneAffecte($num_intervention, $noC)
 	{
-		$req = "select * from affecte where num_intervention = $num_intervention and No_contrat = $noC";
-		$res = PdoSteria::$monPdo->query($req);
+		$res = "select * from affecte where num_intervention = $num_intervention and No_contrat = $noC";
+		$res = PdoSteria::$monPdo->query($res);
+		$laLigne = $res->fetchAll();
+		return $laLigne;
+	}
+	/**
+	 * Retourne une qualification sous forme d'un tableau associatif
+	 *
+	 * @return le tableau associatif d'une qualification
+	*/
+	public function getUneQualification($id)
+	{
+		$res = "select * from qualification where id_salarie = $id";
+		$res = PdoSteria::$monPdo->query($res);
 		$laLigne = $res->fetchAll();
 		return $laLigne;
 	}
@@ -240,9 +252,9 @@ class PdoSteria
 	*/
 	public function creerSecteur($libelle)
 	{
-		$res1 = PdoSteria::$monPdo->prepare('INSERT INTO secteur (libelle_act) VALUES( :libelle)');
-		$res1->bindValue('libelle',$libelle, PDO::PARAM_STR);
-		$res1->execute();
+		$res = PdoSteria::$monPdo->prepare('INSERT INTO secteur (libelle_act) VALUES( :libelle)');
+		$res->bindValue('libelle',$libelle, PDO::PARAM_STR);
+		$res->execute();
 	}
 	/**
 	 * Créer une intervention
@@ -284,6 +296,23 @@ class PdoSteria
 		$res2->bindValue('numI',$num_intervention, PDO::PARAM_STR);
 		$res2->bindValue('salarie',$intervenant, PDO::PARAM_STR);
 		$res2->bindValue('duree',$duree, PDO::PARAM_STR);
+		$res2->execute();
+	}
+	/**
+	 * Créer une qualification
+	 *
+	 * Créer une qualification à partir des arguments validés passés en paramètre
+	*/
+	public function creerQualification($nom, $prenom, $domaine, $prix)
+	{ 
+		$res1 = PdoSteria::$monPdo->query("SELECT MAX(id_salarie) FROM salarie WHERE nom_salarie = '$nom' and prenom_salarie = '$prenom'");
+		(int)$id_salarie = $res1->fetchColumn();
+
+		$res2 = PdoSteria::$monPdo->prepare('INSERT INTO qualification (id_salarie, code_domaine, prix_jour) 
+		VALUES( :id, :code, :prix)');
+		$res2->bindValue('id',$id_salarie, PDO::PARAM_STR);
+		$res2->bindValue('code',$domaine, PDO::PARAM_STR);
+		$res2->bindValue('prix',$prix, PDO::PARAM_STR);
 		$res2->execute();
 	}
 	/**
@@ -336,10 +365,10 @@ class PdoSteria
 	*/
 	public function modifierSecteur($id_secteur,$libelle)
 	{
-		$res1 = PdoSteria::$monPdo->prepare('UPDATE secteur SET libelle_act = :libelle WHERE id_act = :id');
-		$res1->bindValue('id',$id_secteur, PDO::PARAM_INT);
-		$res1->bindValue('libelle',$libelle, PDO::PARAM_STR);
-		$res1->execute();
+		$res = PdoSteria::$monPdo->prepare('UPDATE secteur SET libelle_act = :libelle WHERE id_act = :id');
+		$res->bindValue('id',$id_secteur, PDO::PARAM_INT);
+		$res->bindValue('libelle',$libelle, PDO::PARAM_STR);
+		$res->execute();
 	}
 	/**
 	 * Modifier une intervention
@@ -348,18 +377,18 @@ class PdoSteria
 	*/
 	public function modifierIntervention($noC, $num, $intitule, $debut, $fin, $prix, $etat, $domaine)
 	{
-		$res1 = PdoSteria::$monPdo->prepare('UPDATE intervention SET No_contrat = :noC,
+		$res = PdoSteria::$monPdo->prepare('UPDATE intervention SET No_contrat = :noC,
 			intitule = :intitule, debut = :debut, fin = :fin, prix = :prix,
 			etat = :etat, code_domaine = :domaine WHERE num_intervention = :num');
-		$res1->bindValue('noC',$noC, PDO::PARAM_STR);
-		$res1->bindValue('num',$num, PDO::PARAM_STR);
-		$res1->bindValue('intitule',$intitule, PDO::PARAM_STR);
-		$res1->bindValue('debut',$debut, PDO::PARAM_STR);
-		$res1->bindValue('fin',$fin, PDO::PARAM_STR);
-		$res1->bindValue('prix',$prix, PDO::PARAM_STR);
-		$res1->bindValue('etat',$etat, PDO::PARAM_STR);
-		$res1->bindValue('domaine',$domaine, PDO::PARAM_STR);
-		$res1->execute();
+		$res->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res->bindValue('num',$num, PDO::PARAM_STR);
+		$res->bindValue('intitule',$intitule, PDO::PARAM_STR);
+		$res->bindValue('debut',$debut, PDO::PARAM_STR);
+		$res->bindValue('fin',$fin, PDO::PARAM_STR);
+		$res->bindValue('prix',$prix, PDO::PARAM_STR);
+		$res->bindValue('etat',$etat, PDO::PARAM_STR);
+		$res->bindValue('domaine',$domaine, PDO::PARAM_STR);
+		$res->execute();
 	}
 	/**
 	 * Modifier une affectation
@@ -368,13 +397,27 @@ class PdoSteria
 	*/
 	public function modifierAffecte($noC, $num, $salarie, $duree)
 	{
-		$res1 = PdoSteria::$monPdo->prepare('UPDATE affecte SET No_contrat = :noC,
+		$res = PdoSteria::$monPdo->prepare('UPDATE affecte SET No_contrat = :noC,
 			id_salarie = :salarie, duree = :duree WHERE num_intervention = :num');
-		$res1->bindValue('noC',$noC, PDO::PARAM_STR);
-		$res1->bindValue('num',$num, PDO::PARAM_STR);
-		$res1->bindValue('salarie',$salarie, PDO::PARAM_STR);
-		$res1->bindValue('duree',$duree, PDO::PARAM_STR);
-		$res1->execute();
+		$res->bindValue('noC',$noC, PDO::PARAM_STR);
+		$res->bindValue('num',$num, PDO::PARAM_STR);
+		$res->bindValue('salarie',$salarie, PDO::PARAM_STR);
+		$res->bindValue('duree',$duree, PDO::PARAM_STR);
+		$res->execute();
+	}
+	/**
+	 * Modifier une qualification
+	 *
+	 * Modifier une qualification à partir des arguments validés passés en paramètre
+	*/
+	public function modifierQualification($id, $domaine, $prix)
+	{
+		$res = PdoSteria::$monPdo->prepare('UPDATE qualification SET code_domaine = :code,
+			prix_jour = :prix WHERE id_salarie = :id');
+		$res->bindValue('id',$id, PDO::PARAM_STR);
+		$res->bindValue('code',$domaine, PDO::PARAM_STR);
+		$res->bindValue('prix',$prix, PDO::PARAM_STR);
+		$res->execute();
 	}
 	/**
 	 * Supprimer un intervenant 
@@ -456,6 +499,18 @@ class PdoSteria
 		$resDel = PdoSteria::$monPdo->prepare('DELETE FROM affecte WHERE num_intervention = :num AND No_contrat = :noc');
 		$resDel->bindValue('num',$num_intervention, PDO::PARAM_INT);
 		$resDel->bindValue('noc',$noC, PDO::PARAM_INT);
+		$resDel->execute();
+	}
+	/**
+	 * Supprimer une qualification 
+	 *
+	 * Supprimer une qualification à partir des arguments validés passés en paramètre
+	*/
+	public function supprimerQualification($id, $code)
+	{
+		$resDel = PdoSteria::$monPdo->prepare('DELETE FROM qualification WHERE id_salarie = :id AND code_domaine = :code');
+		$resDel->bindValue('id',$id, PDO::PARAM_INT);
+		$resDel->bindValue('code',$code, PDO::PARAM_INT);
 		$resDel->execute();
 	}
 }

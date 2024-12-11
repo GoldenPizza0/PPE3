@@ -37,7 +37,7 @@
 				<tr><td>Fin</td><td><input type="date" name="TF" size=20 value = "<?php echo $fin; ?>"></td></tr>
 				<tr><td>Prix</td><td><input name="TP" size=15 value = "<?php echo $prix; ?>"></td></tr>	
 				<tr><td>Etat</td><td><input name="TE" size=20 value = "<?php echo $etat; ?>"></td></tr>	
-				<tr><td>Domaine</td><td><input name="TDomaine" size=5 value = "<?php echo $domaine; ?>"></td></tr>
+				<tr><td>Domaine</td><td><input name="TDomaine" size=10 value = "<?php echo $domaine; ?>"></td></tr>
 				<tr><td>Intervenant</td><td><input name="TIntervenant" size=20 value = "<?php echo $salarie; ?>"></td></tr>	
 				<tr><td>Duree</td><td><input name="TDuree" size=6 value = "<?php echo $duree; ?>"></td></tr>	
 			</tbody>
