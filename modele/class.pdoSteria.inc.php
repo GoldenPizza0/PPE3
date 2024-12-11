@@ -38,7 +38,7 @@ class PdoSteria
 	* Appel : $instancePdoTransNat = PdoTransNat::getPdoTransNat();
 	* @return l'unique objet de la classe PdoTransNat
 	*/
-	public  static function getPdoEsteria()
+	public  static function getPdoSteria()
 	{
 		if(PdoSteria::$monPdoEsteria == null)
 		{
