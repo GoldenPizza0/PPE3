@@ -39,29 +39,31 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><a href="./?uc=client&action=CreerSite&id=<?php echo $UnClient['code_client'];?>"><button>nouveau site</button></a></td>
             </tr>
             <?php
-            if ($_GET['id'] == $UnClient['code_client']){
-            ?>
-                    <tr style="background-color:#00ffcc;">
-                        <th>sites</th>
-                        <th>adresse</th>
-                        <th>référent</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <?php
-                    foreach($UnClient["sites"] as $UnSite){
-                    ?>
-                        <tr>
-                            <td><?php echo $UnSite["nom_site"];?></td>
-                            <td><?php echo $UnSite["adresse_site"];?></td>
-                            <td><?php echo $UnSite["referent"];?></td>
-                            <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
-                            <td><a href="./?uc=client&action=ModifierSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
+            if ( isset($_GET['id'])){
+                if ($_GET['id'] == $UnClient['code_client']){
+                ?>
+                        <tr style="background-color:#00ffcc;">
+                            <th>sites</th>
+                            <th>adresse</th>
+                            <th>référent</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                    <?php
-                    }
-                    ?>
-            <?php
+                        <?php
+                        foreach($UnClient["sites"] as $UnSite){
+                        ?>
+                            <tr>
+                                <td><?php echo $UnSite["nom_site"];?></td>
+                                <td><?php echo $UnSite["adresse_site"];?></td>
+                                <td><?php echo $UnSite["referent"];?></td>
+                                <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
+                                <td><a href="./?uc=client&action=ModifierSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                <?php
+                }
             }
             ?>
 
