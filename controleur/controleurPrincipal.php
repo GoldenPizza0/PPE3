@@ -2,7 +2,7 @@
 
 function controleurPrincipal($action) {
     $lesActions = array();
-    $lesActions["defaut"] = "listeContrats.php";
+    $lesActions["defaut"] = "connexion.php";
     $lesActions["accueil"] = "listeContrats.php";
     $lesActions["GererContrat"] = "listeContrats.php";
     $lesActions["client"] = "c_controleurClients.php";

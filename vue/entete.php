@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title><?php echo $titre ?></title>
         <style type="text/css">
-            @import url("../modele/cssGeneral.css");
+            @import url("css/styles.css");
         </style>
         <link href="css/cssGeneral.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -14,7 +14,7 @@
         <ul id="menuGeneral">
             
             <li><a href="./?uc=client">Client</a></li>
-            <li><a href="./?uc=salarie">Salarié</a></li>
+            <li><a href="./?uc=default">Contrat</a></li>
             <li><a href="./?uc=intervenant">Intervenant</a></li>
             <li id="logo"><a href="./?uc=accueil"><img src="images/steria.svg" style="width:64px;height:64px" alt="logo" /></a></li>
             <li><a href="./?uc=commercial">Commercial</a></li>
