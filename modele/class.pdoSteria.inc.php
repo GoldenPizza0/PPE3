@@ -13,10 +13,15 @@
 
 class PdoSteria
 {   		
-	private static $serveur='mysql:host=localhost'; //db672809222.db.1and1.com
-	private static $bdd='dbname=esn_steria'; //db672809222  		
-	private static $user='root' ; //dbo672809222		
-	private static $mdp='' ; //4FsiBA8FYNuk
+	// private static $serveur='mysql:host=db672809222.db.1and1.com';
+	// private static $bdd='dbname=db672809222';	
+	// private static $user='dbo672809222';	
+	// private static $mdp='4FsiBA8FYNuk';
+
+	private static $serveur='mysql:host=localhost';
+	private static $bdd='dbname=esn_steria';		
+	private static $user='root' ;		
+	private static $mdp='' ;
 	private static $monPdo;
 	private static $monPdoEsteria = null;
 	/**
