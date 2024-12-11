@@ -56,7 +56,7 @@ foreach($lesClientsEtSites as $UnClient){
                                 <td><?php echo $UnSite["nom_site"];?></td>
                                 <td><?php echo $UnSite["adresse_site"];?></td>
                                 <td><?php echo $UnSite["referent"];?></td>
-                                <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
+                                <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')"><img src="images/modifier.gif" title="Modif"></a></td>
                                 <td><a href="./?uc=client&action=ModifierSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><img src="images/modifier.gif" title="Modif"></a></td>
                             </tr>
                         <?php
