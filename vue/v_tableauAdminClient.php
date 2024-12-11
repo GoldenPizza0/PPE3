@@ -34,9 +34,9 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><?php echo $UnClient["adresse"];?></td>
                 <td><?php echo $UnClient["activite"];?></td>
                 <td><a href="./?uc=client&action=SupprimerClient&id=<?php echo $UnClient['code_client'];?>" onclick="return confirm('voulez vous vraiment supprimer ce client')"><button>X</button></a></td>
-                <td><a href="./?uc=client&action=ModifierClient"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
+                <td><a href="./?uc=client&action=ModifierClient&id=<?php echo $UnClient['code_client'];?>"><button>%</button></a></td>
                 <td><a href="./?uc=client&id=<?php echo $UnClient['code_client'];?>"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>afficher</button></a></td>
-                <td><a href="./?uc=client&id=<?php echo $UnClient['code_client'];?>"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>nouveau site</button></a></td>
+                <td><a href="./?uc=client&action=CreerSite&id=<?php echo $UnClient['code_client'];?>"><button>nouveau site</button></a></td>
             </tr>
             <?php
             if ($_GET['id'] == $UnClient['code_client']){
@@ -55,8 +55,8 @@ foreach($lesClientsEtSites as $UnClient){
                             <td><?php echo $UnSite["nom_site"];?></td>
                             <td><?php echo $UnSite["adresse_site"];?></td>
                             <td><?php echo $UnSite["referent"];?></td>
-                            <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>">X</a></td>
-                            <td><a href="./?uc=client&action=ModifierSite"><button name="idClient" value= <?php echo $UnClient['code_client'];?>>%</button></a></td>
+                            <td><a href="./?uc=client&action=SupprimerSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><button>X</button></a></td>
+                            <td><a href="./?uc=client&action=ModifierSite&id=<?php echo $UnClient['code_client'];?>&site=<?php echo $UnSite['num_site'];?>"><button>%</button></a></td>
                         </tr>
                     <?php
                     }

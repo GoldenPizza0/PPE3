@@ -49,14 +49,35 @@ switch($action)
     }
     case 'ModifierClient' :
     {
-        $libelle = $_POST['idClient'];
-        include ("vue/v_message.php");
+        $id = $_GET['id'];
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $adresse = $_POST['adresse'];
+            $client = $_POST['client'];
+            $act = $_POST['Secteur'];
+            ModificationClient($id,$adresse,$client,$act);
+            $message = "modification faite";
+            include ("vue/v_message.php");
+            break;
+        }
+        $leClient = GetClientParId($id);
+        include ("vue/v_modificationClient.php");
         break;
     }
     case 'ModifierSite' :
     {
-        $libelle = $_POST['idClient'];
-        include ("vue/v_message.php");
+        $id = $_GET['id'];
+        $site = $_GET['site'];
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $adresse = $_POST['adresse'];
+            $nom = $_POST['nom'];
+            $referent = $_POST['referent'];
+            ModificationSite($adresse,$nom,$referent,$id,$site);
+            $message = "modification faite";
+            include ("vue/v_message.php");
+            break;
+        }
+        $leSite = GetSiteParId($id,$site);
+        include ("vue/v_modificationSite.php");
         break;
     }
     case 'CreerClient' :
@@ -71,12 +92,21 @@ switch($action)
             break;
         }
         include("vue/v_creationClient.php");
+        break;
     }
     case 'CreerSite' :
     {
-        
-        $libelle = $_POST['idClient'];
-        include ("vue/v_message.php");
+        $id = $_GET['id'];
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $adresse = $_POST['adresse'];
+            $nom = $_POST['nom'];
+            $referent = $_POST['referent'];
+            CreationSite($adresse,$nom,$referent, $id);
+            $message = "création faite";
+            include ("vue/v_message.php");
+            break;
+        }
+        include("vue/v_creationSite.php");
         break;
     }
 }

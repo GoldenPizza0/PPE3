@@ -95,4 +95,40 @@ function CreationClient($adresse,$societe,$id_act){
     Values('$adresse','$societe',$id_act)");
     $req->execute();
 }
+function  CreationSite($adresse,$nom,$referent,$id){
+    $cnx = connexionPDO();
+    $req1 = $cnx->query("SELECT max(num_site) as num FROM site where code_client = $id");
+    $num_site = $req1->fetch();
+    echo $num_site['num'];
+    if($num_site['num'] == null){
+        $num_site['num'] = 0;
+    }
+    $num = $num_site['num'] + 1;
+    $req = $cnx->prepare("
+    insert into site (code_client, num_site, nom_site, adresse_site, referent)
+    Values($id,$num,'$nom','$adresse','$referent')");
+    $req->execute();
+}
+function GetSiteParId($id, $site){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT nom_site,adresse_site,referent FROM site where code_client = $id and num_site = $site");
+    $lesLignes = $req->fetch();
+    return $lesLignes;
+}
+function ModificationSite($adresse,$nom,$referent,$id,$site){
+    SuppSite($id,$site);
+    CreationSite($adresse,$nom,$referent,$id);
+}
+
+function GetClientParId($id){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT * FROM client where code_client = $id");
+    $lesLignes = $req->fetch();
+    return $lesLignes;
+}
+
+function ModificationClient($id,$adresse,$client,$act){
+    SuppClient($id);
+    CreationClient($adresse,$client,$act);
+}
 ?>
