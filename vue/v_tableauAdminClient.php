@@ -39,7 +39,7 @@ foreach($lesClientsEtSites as $UnClient){
                 <td><a href="./?uc=client&action=CreerSite&id=<?php echo $UnClient['code_client'];?>"><button>nouveau site</button></a></td>
             </tr>
             <?php
-            if ( isset($_GET['id'])){
+            if ( isset($UnClient['code_client'])){
                 if ($_GET['id'] == $UnClient['code_client']){
                 ?>
                         <tr style="background-color:#00ffcc;">
