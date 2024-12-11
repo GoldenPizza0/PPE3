@@ -12,6 +12,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 include_once "$racine/modele/bd.client.inc.php";
+
+$titre = "Gestion Clients";
 include "vue/entete.php";
 switch($action)
 {
