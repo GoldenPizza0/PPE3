@@ -9,7 +9,7 @@
         
 </head>
 <body>
-    <form action="index.php?uc=gererSecteur&action=creationSecteur" method="post">
+    <form action="index.php?uc=secteur&action=creationSecteur" method="post">
         <p><H1>Liste des secteurs</H1><br>
 
         <table border=3 cellspacing=1 >
@@ -28,8 +28,8 @@
                 <?php 
 
                 ?>
-				<td width=30><a href=index.php?uc=gererSecteur&action=modificationSecteur&id=<?php echo $id ?>><img src="images/modifier.gif" title="Modif"></a></td>
-                <td width=30><a href=index.php?uc=gererSecteur&action=suppressionSecteur&id=<?php echo $id ?>><img src="images/supp.png" title="Suppr"></a></td>
+				<td width=30><a href=index.php?uc=secteur&action=modificationSecteur&id=<?php echo $id ?>><img src="images/modifier.gif" title="Modif"></a></td>
+                <td width=30><a href=index.php?uc=secteur&action=suppressionSecteur&id=<?php echo $id ?>><img src="images/supp.png" title="Suppr"></a></td>
             </tr>
             <?php 
         }

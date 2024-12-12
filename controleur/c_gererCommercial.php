@@ -10,6 +10,7 @@
 		$racine = "..";
 	}
 
+	$titre = "Gestion Commercial";
 	include "vue/entete.php";
 
 	switch($action)

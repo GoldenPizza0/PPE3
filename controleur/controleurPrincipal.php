@@ -13,6 +13,7 @@ function controleurPrincipal($action) {
         "Domaine_Technique" => "gererdomaine.php",
         "commercial" => "c_gererCommercial.php",
         "secteur" => "c_gererSecteur.php",
+        "intervention" => "c_gererIntervention.php",
     ];
 
     return $lesActions[$action] ?? $lesActions["defaut"];

@@ -1,22 +1,7 @@
-<?php 
-
+<?php
 include_once "bd.inc.php";
 
 // Récupère tous les contrats
-function getClient() {
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM client");
-        $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        echo "Erreur : " . $e->getMessage();
-        return false;
-    }
-}
-
-
-// Récupère tous les clients
 function nbClients() {
     try {
         $cnx = connexionPDO();
@@ -30,7 +15,7 @@ function nbClients() {
     }
 }
 
-// Récupère les clients et leurs sites
+// Récupère les contrats par l'identifiant d'un salarié (id_salarie ou id_salarie_1)
 function getLesClientsEtSites() {
     try {
         $listeclient = array();
@@ -75,6 +60,95 @@ function getLesClientsEtSites() {
         return false;
     }
 }
+function SuppClient($idClient) {
+    try {
+        $cnx = connexionPDO();
+        $req = "
+        Delete FROM site where code_client = ".$idClient.";
+        Delete FROM client where code_client = ".$idClient.";";
+        $cnx->exec($req);
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
+function SuppSite($idClient, $idSite) {
+    try {
+        $cnx = connexionPDO();
+        $req = "
+        Delete FROM site where num_site = ".$idSite." and code_client = ".$idClient.";";
+        $cnx->exec($req);
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
+function getLesSecteurs(){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT id_act, libelle_act FROM secteur");
+    $lesLignes = $req->fetchAll();
+    return $lesLignes;
+}
+function CreationClient($adresse,$societe,$id_act){
+    $cnx = connexionPDO();
+    $req = $cnx->prepare("insert into client ( adresse , societe, id_act )
+    Values('$adresse','$societe',$id_act)");
+    $req->execute();
+}
+function  CreationSite($adresse,$nom,$referent,$id){
+    $cnx = connexionPDO();
+    $req1 = $cnx->query("SELECT max(num_site) as num FROM site where code_client = $id");
+    $num_site = $req1->fetch();
+    echo $num_site['num'];
+    if($num_site['num'] == null){
+        $num_site['num'] = 0;
+    }
+    $num = $num_site['num'] + 1;
+    $req = $cnx->prepare("
+    insert into site (code_client, num_site, nom_site, adresse_site, referent)
+    Values($id,$num,'$nom','$adresse','$referent')");
+    $req->execute();
+}
+function GetSiteParId($id, $site){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT nom_site,adresse_site,referent FROM site where code_client = $id and num_site = $site");
+    $lesLignes = $req->fetch();
+    return $lesLignes;
+}
+function ModificationSite($adresse,$nom,$referent,$id,$site){
+    SuppSite($id,$site);
+    CreationSite($adresse,$nom,$referent,$id);
+}
+
+function GetClientParId($id){
+    $cnx = connexionPDO();
+    $req = $cnx->query("SELECT * FROM client where code_client = $id");
+    $lesLignes = $req->fetch();
+    return $lesLignes;
+}
+
+function ModificationClient($id,$adresse,$client,$act){
+    SuppClient($id);
+    CreationClient($adresse,$client,$act);
+}
+?><?php 
+
+include_once "bd.inc.php";
+
+// Récupère tous les contrats
+function getClient() {
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("SELECT * FROM client");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+        return false;
+    }
+}
+
+
 
 
 ?>
