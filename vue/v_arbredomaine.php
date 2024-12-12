@@ -35,7 +35,7 @@ if (!empty($arbreHierarchie)) {
                         if(!empty($domaine_couvert['libelle'])){
                         echo "<li><strong>Domaine couvert :</strong> {$domaine_couvert['libelle']} (ID : {$domaine_couvert['code_domaine']})</li>";
                         }
-                    }
+                    } 
                     echo "</ul>";
                 }
             }
