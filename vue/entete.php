@@ -27,7 +27,7 @@
             <li><a href="./?uc=deconnexion">Deconnexion</a></li>
             <?php } 
             else{ ?>
-            <li><a href="./?uc=connexion"><img style="width: auto;height: 35px;" src="images/profil.png" alt="loupe" /></a></li>
+            <li><a href="./?uc=deconnexion"><img style="width: auto;height: 35px;" src="images/profil.png" alt="loupe" /></a></li>
             <?php } ?>
         </ul>
     </nav>

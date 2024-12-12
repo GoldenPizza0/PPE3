@@ -9,7 +9,16 @@ include_once "$racine/modele/authentification.php";
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 
 // traitement si necessaire des donnees recuperees
-logout();
+if (isset($_SESSION['id'])){
+    $identifiant='';
+    $mdp='';
+    logout();
+    session_destroy();
+}
+else{
+    echo "erreur";
+}
+
 
                 
 

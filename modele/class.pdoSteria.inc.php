@@ -1,4 +1,4 @@
-﻿<?php
+﻿﻿<?php
 /** 
  * Classe d'accès aux données. 
  
@@ -517,6 +517,19 @@ class PdoSteria
 		$resDel->bindValue('id',$id, PDO::PARAM_INT);
 		$resDel->bindValue('code',$code, PDO::PARAM_INT);
 		$resDel->execute();
+	}
+
+	function connecter($identifiant,$mdp)
+	{
+		$req = PdoSteria::$monPdo -> prepare("SELECT * FROM profil WHERE username = :videntifiant");
+		$req->bindValue("videntifiant", $identifiant);
+		$req->execute();
+		foreach($req as $ligne)
+		{
+			return ($ligne['mdp']==$mdp);
+		}
+	
+		return false;
 	}
 }
 ?>
