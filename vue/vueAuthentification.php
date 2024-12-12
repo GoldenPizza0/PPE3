@@ -7,7 +7,7 @@
 
 </form>
 <br />
-<a href="./?uc=inscription">Inscription</a>
+
 
 <hr>
 Utilisateur de test : <br />
