@@ -14,12 +14,12 @@
         <ul id="menuGeneral">
         <?php if(isLoggedOn()){ ?>
             <li><a href="./?uc=client">Client</a></li>
-            <li><a href="./?uc=Domaine_Technique">Domaine Technique</a></li>
+            <li><a href="./?uc=Domaine_Technique">Domaine</a></li>
             <li><a href="./?uc=intervenant">Intervenant</a></li>
             <li id="logo"><a href="./?uc=accueil"><img src="images/steria.svg" style="width:64px;height:64px" alt="logo" /></a></li>
             <li><a href="./?uc=commercial">Commercial</a></li>
             <li><a href="./?uc=secteur">Secteur</a></li> 
-
+            <li><a href="./?uc=intervention">intervention</a></li> 
             
 
             
