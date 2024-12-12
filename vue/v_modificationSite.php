@@ -1,5 +1,5 @@
 <body>
-		<p><h1>Nouveau site :</h1></p><BR/>
+		<p><h1>modifier site :</h1></p><BR/>
 		<form action="index.php?uc=client&action=ModifierSite&id=
 		<?php echo  $id;?>&site=<?php echo $site;?>" method="post">
 			<table>
@@ -11,6 +11,6 @@
 			</table>
 			
 			<br/>
-			<input type="submit" value="Valider">
+			<input type="submit" value="Valider" onclick="return confirm('modification faite')">
 		</form>
 	</body>

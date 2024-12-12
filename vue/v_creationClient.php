@@ -21,6 +21,6 @@
 			</table>
 			
 			<br/>
-			<input type="submit" value="Valider">
+			<input type="submit" value="Valider"  onclick="return confirm('création faite')">
 		</form>
 	</body>
