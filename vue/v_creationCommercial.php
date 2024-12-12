@@ -10,7 +10,7 @@
 	
    <body>
 		<p><h1>Nouveau commercial cree :</h1></p><BR/>
-		<form action="index.php?uc=commercial&action=confirmCreatCommercial" method="post">
+		<form action="index.php?uc=gererCommercial&action=confirmCreatCommercial" method="post">
 			<table>
 				<tbody>
 					<tr><td>Nom</td><td><input name="TNom" size=20></td></tr>

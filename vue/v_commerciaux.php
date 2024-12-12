@@ -9,7 +9,7 @@
         
 </head>
 <body>
-    <form action="index.php?uc=commercial&action=creationCommercial" method="post">
+    <form action="index.php?uc=gererCommercial&action=creationCommercial" method="post">
         <p><H1>Liste des commerciaux</H1><br>
 
         <table border=3 cellspacing=1 >
@@ -40,8 +40,8 @@
                 <?php 
 
                 ?>
-				<td width=30><a href=index.php?uc=commercial&action=modificationCommercial&id=<?php echo $id ?>><img src="images/modifier.gif" title="Modif"></a></td>
-                <td width=30><a href=index.php?uc=commercial&action=suppressionCommercial&id=<?php echo $id ?>><img src="images/supp.png" title="Suppr"></a></td>
+				<td width=30><a href=index.php?uc=gererCommercial&action=modificationCommercial&id=<?php echo $id ?>><img src="images/modifier.gif" title="Modif"></a></td>
+                <td width=30><a href=index.php?uc=gererCommercial&action=suppressionCommercial&id=<?php echo $id ?>><img src="images/supp.png" title="Suppr"></a></td>
             </tr>
             <?php 
         }

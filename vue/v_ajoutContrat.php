@@ -1,8 +1,8 @@
-<h1>Ajout, Suppression et modification des contrats</h1>
+
 <!-- Formulaire pour ajouter un contrat -->
 <div class="card">
     <h2>Ajouter un nouveau contrat</h2>
-    <form action="./?uc=ajouterContrat" method="POST">
+    <form action="./?uc=gererContrat&action=ajout" method="POST">
         <label for="No_contrat">Numéro de contrat :</label>
         <?php 
         echo "<input type='number' id='No_contrat' name='No_contrat' min='". $idcontrat +1 ."' required>";
@@ -21,7 +21,7 @@
         <input type="date" id="signer" name="signer" required>
         <br />
         
-        <label for="id_salarie">ID Salarié 1 : liste</label>
+        <label for="id_salarie">ID Salarié 1 : </label>
         <select name="id_salarie" id="id_salarie" required>
         <?php 
         foreach($intervenants as $intervenant) {
@@ -32,7 +32,7 @@
         </select>
         <br />
         
-        <label for="id_salarie_1">ID Salarié 2 :liste</label>
+        <label for="id_salarie_1">ID Salarié 2 :</label>
         <select name="id_salarie_1" id="id_salarie_1" required>
         <?php 
         foreach($commerciaux as $commercial){
@@ -42,21 +42,21 @@
         </select>
         <br />
         
-        <label for="code_client">Code client :liste</label>
+        <label for="code_client">Code client :</label>
         <select name="code_client" id="code_client" required>
         <?php 
-        foreach($sites as $site){
-            echo "<option value='" . $site["code_client"] . "'>" . $site["code_client"] . "</option>";
+        foreach($clients as $client){
+            echo "<option value='" . $client["code_client"] . "'>" . $client["code_client"] . "</option>";
         }
         ?>
         </select>
         <br />
         
-        <label for="num_site">Numéro de site :liste</label>
+        <label for="num_site">Numéro de site :</label>
         <select name="num_site" id="num_site" required>
         <?php 
         foreach($sites as $site){
-            echo "<option value='" . $site["num_site"] . "'>" . $site["num_site"] . "</option>";
+            echo "<option value='" . $site["num_site"] . "'>" . $site["num_site"] ." ". $site["nom_site"] . "</option>";
         }
         ?>
         </select>
@@ -64,4 +64,10 @@
         
         <input type="submit" value="Ajouter le contrat">
     </form>
+    <?php if (!empty($message)): ?>
+    <div class="<?= $result ? 'success' : 'error' ?>">
+        <?= htmlspecialchars($message) ?>
+    </div>
+<?php endif; ?>
+
 </div>

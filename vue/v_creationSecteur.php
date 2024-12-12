@@ -10,7 +10,7 @@
 	
    <body>
 		<p><h1>Nouveau secteur cree :</h1></p><BR/>
-		<form action="index.php?uc=secteur&action=confirmCreatSecteur" method="post">
+		<form action="index.php?uc=gererSecteur&action=confirmCreatSecteur" method="post">
 			<table>
 				<tbody>
 					<tr><td>Libellé</td><td><input name="TLibelle" size=15></td></tr>
