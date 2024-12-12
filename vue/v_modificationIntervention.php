@@ -72,7 +72,7 @@
 							</select>
 						</td>
 					</tr>
-					<tr><td>Durée</td><td><input type="date" name="TDuree" size=20></td></tr>
+					<tr><td>Durée</td><td><input type="date" name="TDuree" size=20 value = "<?php echo $duree; ?>"></td></tr>
 			</tbody>
 		</table>
 		
