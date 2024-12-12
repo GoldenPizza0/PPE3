@@ -5,7 +5,7 @@
     require_once("modele/class.pdoEsteria.inc.php");
     
     $pdo = PdoEsteria::getPdoEsteria();	
-    if (isset($_GET["uc"]) && isLoggedOn()) {
+    if (isset($_GET["uc"])) {
         $uc = $_GET["uc"];
     } 
     else {
