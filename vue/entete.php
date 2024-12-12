@@ -12,7 +12,7 @@
     <body>
     <nav>
         <ul id="menuGeneral">
-        <?php if(isLoggedOn()){ ?>
+            
             <li><a href="./?uc=client">Client</a></li>
             <li><a href="./?uc=Domaine_Technique">Domaine</a></li>
             <li><a href="./?uc=intervenant">Intervenant</a></li>
@@ -22,7 +22,7 @@
             <li><a href="./?uc=intervention">intervention</a></li> 
             
 
-            
+            <?php if(isLoggedOn()){ ?>
             <li><a href="./?uc=deconnexion">Deconnexion</a></li>
             <?php } 
             else{ ?>
