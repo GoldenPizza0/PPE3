@@ -9,7 +9,7 @@
 	
    <body>
    <p><h1>Modification Secteur :</h1></p><BR/>
-	<form action="index.php?uc=secteur&action=confirmModifSecteur" method="post">
+	<form action="index.php?uc=gererSecteur&action=confirmModifSecteur" method="post">
 		<table>
 		<?php
 			$leSecteur = $pdo->getUnSecteur($_REQUEST['id']);

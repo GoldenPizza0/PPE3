@@ -9,7 +9,7 @@
 	
    <body>
    <p><h1>Suppression Commercial :</h1></p><BR/>
-	<form action="index.php?uc=commercial&action=confirmSuppCommercial" method="post">
+	<form action="index.php?uc=gererCommercial&action=confirmSuppCommercial" method="post">
 		<table>
 		<?php
 			$leCommercial = $pdo->getUnCommercial($_REQUEST['id']);

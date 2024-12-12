@@ -11,7 +11,6 @@
 		$racine = "..";
 	}
 
-	$titre = "Gestion Secteur";
 	include "vue/entete.php";
 
 	switch($action)

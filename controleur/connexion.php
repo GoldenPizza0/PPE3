@@ -1,45 +1,48 @@
 <?php
-// $action :variable d'aiguillage
-if (isset($_GET["action"])) {
-    $action = $_GET["action"];
-} 
-else {
-    $action = "seConnecter";
+if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
+    $racine="..";
 }
+include_once "$racine/modele/authentification.php";
 
-// $action = $_GET['action'];
-switch($action)
+// creation du menu burger
+$menuBurger = array();
+$menuBurger[] = Array("url"=>"./?uc=connexion","label"=>"Connexion");
+$menuBurger[] = Array("url"=>"./?uc=inscription","label"=>"Inscription");
+
+// creation du menu burger
+$menuBurger = array();
+$menuBurger[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
+$menuBurger[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
+
+// recuperation des donnees GET, POST, et SESSION
+if (isset($_POST["username"]) && isset($_POST["mdp"])){
+    $username=$_POST["username"];
+    $mdp=$_POST["mdp"];
+    $username=$_POST["username"];
+    $mdp=$_POST["mdp"];
+}
+else
 {
-    case 'seConnecter':
-    {
-        if (isset($_SESSION['id'])){
-            echo 'Vous etes deja connecte';
-        }
-        else{
-            $identifiant='';
-            $mdp='';
-            include("vue/vueAuthentification.php");
-            break;
-        }
-    }
-
-    case 'confirmerConnexion':
-    {
-        $msgErreurs = getErreursSaisieConnexion($_POST['identifiant'], $_POST['mdp']);
-        if ($msgErreurs==null) {
-            if ($pdo->connecter($_POST['identifiant'], $_POST['mdp'])){
-                echo "Bienvenue ",$_POST['identifiant']," avec le mot de passe : ",$_POST['mdp'];
-                $_SESSION["id"]=$_POST['identifiant'];
-                ?>
-                <a href="index.php?uc=accueil">lien accueil</a>
-            <?php
-            }else{
-                echo "Erreur de login";
-            }
-        }else{
-			echo $msgErreurs;
-		}
-        break;
-    }
+    $username="";
+    $mdp="";
+    $username="";
+    $mdp="";
 }
+
+
+
+// traitement si necessaire des donnees recuperees
+login($username,$mdp);
+login($username,$mdp);
+
+if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
+    include "$racine/controleur/listeContrats.php";
+}
+else{ // l'utilisateur n'est pas connecté
+    $titre = "authentification";
+    include "$racine/vue/entete.php";
+    include "$racine/vue/vueAuthentification.php";
+    include "$racine/vue/pied.php";
+}
+
 ?>

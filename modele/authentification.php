@@ -15,7 +15,6 @@ function login($username, $mdp) {
         
         if ($mdpBD == $mdp) {
             // Le mot de passe est correct
-            $_SESSION['num'] = 1;
             $_SESSION["username"] = $username;
             $_SESSION["mdp"] = $mdpBD;
         }
@@ -51,7 +50,7 @@ function isLoggedOn() {
     }
     $ret = false;
 
-    if (isset($_SESSION["num"])) {
+    if (isset($_SESSION["username"])) {
         $util = getUtilisateurByMail($_SESSION["username"]);
         if ($util["username"] == $_SESSION["username"] && $util["mdp"] == $_SESSION["mdp"]
         ) {
@@ -59,22 +58,6 @@ function isLoggedOn() {
         }
     }
     return $ret;
-}
-
-
-function getErreursSaisieConnexion($identifiant, $mdp)
-{
-	$lesErreurs = array();
-	if($identifiant=="")
-	{
-		$lesErreurs[]="Il faut saisir le champ identifiant";
-	}
-	if($mdp=="")
-	{
-		$lesErreurs[]="Il faut saisir le champ mdp";
-	}
-
-	return $lesErreurs;
 }
 
 ?>
